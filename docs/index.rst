@@ -38,25 +38,27 @@ Table of Contents
    Pinout <pinout>
    Usb <usb>
    Uart <uart>
-   native-protocol
-   rc-pwm
-   analog-input
-   thermistors
+   Native Protocol <native-protocol>
+   Pwm <pwm>
+   Analog Input <analog-input>
+   Thermistors <thermistors>
    Limit Switchs <limit-switchs>
 
 .. toctree::
    :maxdepth: 1
    :caption: Actuator Board API
-   
+
+   API <api>
+   Usage <usage>
 
 .. toctree::
    :maxdepth: 1
-   :caption: For Acrome Developers
+   :caption: For Developers
 
-   developer-guide
-   configuring-vscode
+   Developer Guide <developer-guide>
+   Configuring Vscode <configuring-vscode>
 
 .. toctree::
    :caption: CHANGELOG
 
-   changelog.rst
+   changelog.rst <changelog>
