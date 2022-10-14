@@ -24,7 +24,6 @@ version = '0.1.0'
 # -- General configuration
 
 extensions = [
-    'sphinx_panels',    # dropdown directive
     'sphinx_rtd_theme', # read the docs theme
     'sphinx.ext.duration',
     'sphinx.ext.doctest',
