@@ -23,7 +23,7 @@ version = '0.1.0'
 
 # -- General configuration
 
-extensions = ['sphinx_tabs.tabs',
+extensions = [
     'sphinx_copybutton', # copy button for code blocks
     'sphinx_panels',    # dropdown directive
     'sphinx_rtd_theme', # read the docs theme
