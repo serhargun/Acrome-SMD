@@ -12,6 +12,7 @@ how to :ref:`installation` the project.
 .. note::
 
    This project is under active development.
+   Acrome R&D Team
 
 Contents
 --------
