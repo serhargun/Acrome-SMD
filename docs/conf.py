@@ -12,14 +12,11 @@ import sys
 sys.path.insert(0, os.path.abspath('.'))
 sys.path.insert(0, os.path.abspath('./figures'))
 sys.path.insert(0, os.path.abspath('./exts')) # needed for fibre_autodoc extension
-sys.path.insert(0, os.path.abspath('../tools/fibre-tools')) # needed for fibre_autodoc extension
+#sys.path.insert(0, os.path.abspath('../tools/fibre-tools')) # needed for fibre_autodoc extension
 
 project = 'Acrome Actuator Board'
 copyright = '2022, Acrome Robotics'
 author = 'Acrome Robotics'
-
-release = '0.1'
-version = '0.1.0'
 
 # -- General configuration
 
