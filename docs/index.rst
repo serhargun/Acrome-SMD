@@ -1,25 +1,3 @@
-Welcome to Acrome Actuator Board's documentation!
-===================================
-
-:version: |0.1|
-:author: |Acrome Robotics|
-:copyright: |Acrome Robotics|
-
-.. note::
-
-   This project is under active development.
-   Acrome R&D Team
-
-Contents
---------
-
-.. toctree::
-
-   usage
-   api
-
-
-
 ================================================================================
 Acrome Actuator Board's Documentation
 ================================================================================
@@ -46,27 +24,25 @@ Table of Contents
    :maxdepth: 1
    :caption: Tutorials
 
-   RS-485 Guide <>
-   UART Guide
-   Motor Guide <>
-   Encoder Guide <>
+   RS-485 Guide <rs-guide>
+   UART Guide <uart-guide>
+   Motor Guide <motor-guide>
+   Encoder Guide <encoder-guide>
 
 
 .. toctree::
    :maxdepth: 1
    :caption: Interfaces and Protocols
    
-   protocol
+   Protocol <protocol>
    Pinout <pinout>
-   usb
-   uart
+   Usb <usb>
+   Uart <uart>
    native-protocol
-   ascii-protocol
-   can-protocol
    rc-pwm
    analog-input
-   endstops
    thermistors
+   Limit Switchs <limit-switchs>
 
 .. toctree::
    :maxdepth: 1
