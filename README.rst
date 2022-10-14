@@ -1,9 +1,9 @@
-Template for the Read the Docs tutorial
+Acrome Actuator Board Docs 
 =======================================
 
 This GitHub template includes fictional Python library
 with some basic Sphinx docs.
 
-Read the tutorial here:
+Read the doc here:
 
-https://docs.readthedocs.io/en/stable/tutorial/
+https://acromeactuatorboard.readthedocs.io/en/latest/usage.html
