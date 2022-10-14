@@ -62,5 +62,5 @@ html_theme_options = {
 html_static_path = ['_static']
 intersphinx_mapping = {'python': ('https://docs.python.org/3', None)}
 
-version = "0.1"
-release = version
+release = '0.1'
+version = '0.1.0'
