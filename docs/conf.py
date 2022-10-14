@@ -12,8 +12,6 @@ import sys
 sys.path.insert(0, os.path.abspath('.'))
 sys.path.insert(0, os.path.abspath('./figures'))
 sys.path.insert(0, os.path.abspath('./exts')) # needed for fibre_autodoc extension
-sys.path.insert(0, os.path.abspath('../tools/fibre-tools')) # needed for fibre_autodoc extension
-
 project = 'Acrome Actuator Board'
 copyright = '2022, Acrome Robotics'
 author = 'Acrome Robotics'
@@ -27,8 +25,6 @@ extensions = [
     'sphinx.ext.autodoc', # Generate documentation from Python modules
     'sphinx.ext.autosummary', # Generate summary tables for Python documentation
     'sphinx.ext.intersphinx',  # Hyperlinks to external projects (such as Python standard library)
-    'fibre_autodoc', # Generate summary tables for Python documentation
-    'myst_parser' # render CHANGELOG markdown file
 ]
 templates_path = ['_templates']
 # List of patterns, relative to source directory, that match files and
