@@ -36,7 +36,7 @@ Table of Contents
    
    Protocol <protocol>
    Pinout <pinout>
-   Usb <usb>
+   Sensors <sensors>
    Uart <uart>
    Native Protocol <native-protocol>
    Pwm <pwm>
