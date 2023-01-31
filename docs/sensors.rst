@@ -6,11 +6,9 @@ Sensors
 HC-SR04 
 ------------
 
- (Device ID: 0x06)
-
- Range min-max>
-
- Distance(cm) : 2-400
+(Device ID: 0x06)
+Range min-max
+Distance(cm) : 2-400
 
 The HCSR04 is a low-cost ultrasonic distance sensor that can be used to measure the distance of an object from a sensor. It uses sonar to determine the distance to an object by emitting a sound wave at a high frequency, and measuring the time it takes for the sound wave to bounce back.The sensor has four pins: Vcc, Trig, Echo, and GND. The Vcc and GND pins are used to power the sensor, typically with a voltage between 5V and 5.5V. The Trig pin is used to trigger the sensor to send out a sound wave, and the Echo pin is used to receive the sound wave that bounces back from an object.When the Trig pin is set to a high level for at least 10 microseconds, the sensor sends out an 8 cycle sonic burst at a frequency of 40kHz. When the sound wave hits an object, it bounces back and is received by the Echo pin. The time between the Trig signal and the Echo signal is proportional to the distance of the object.The distance can be calculated using the speed of sound and the time it took for the sound wave to return. The distance formula is: distance = (time * speed of sound) / 2.
 
@@ -23,7 +21,7 @@ Data from the sensor is read with Attiny85 and transmitted to the actuator card 
 QTR
 ------------
 
- (Device ID: 0x0A)
+(Device ID: 0x0A)
 
 A QTR (Pololu Quad Reflectance Sensor ) is an electronic sensor that is used to detect the reflectance of a surface. It is typically used in robotics and automation applications to detect the presence or absence of an object, or to measure the position of an object.The QTR sensor consists of an array of three phototransistors that are sensitive to infrared light. The sensor is placed in front of a surface, and infrared light is emitted from the sensor towards the surface. Some of the infrared light is reflected back to the sensor, and the amount of light that is reflected back is proportional to the reflectance of the surface.The three phototransistors in the sensor detect the amount of light that is reflected back, and the sensor outputs a signal that is proportional to the reflectance of the surface. The sensor can be used to detect black and white surfaces, or to measure the position of an object on a line.
 
@@ -36,13 +34,10 @@ This byte = Left-Mid-Right-0-0-0-0-0. By bit shifting we can obtain 3 data separ
 The Ambient Light Sensor(IN-S32GTLS)
 ------------
 
- (Device ID:0x05)
-
- Range min-max>
-
- Wavelength  : 300-700 nm 
-
- Flux per unit area 	: 0-2600 lux
+(Device ID:0x05)
+Range min-max
+Wavelength  : 300-700 nm 
+Flux per unit area 	: 0-2600 lux
 
 The Ambient Light Sensor is a device that measures the amount of light in its surrounding environment. These sensors are commonly used in smartphones, laptops, and other electronic devices to automatically adjust the screen brightness based on the surrounding light level. The output of the sensor is connected to an analog-to-digital converter (ADC) which converts the analog signal into a digital signal that can be read and processed by a microcontroller or computer.
 
@@ -55,7 +50,7 @@ To use the sensor, the data is read with an Attiny85 microcontroller and transmi
 Joystick
 ------------
 
- (Device ID: 0x09)
+(Device ID: 0x09)
 
 An Arduino joystick module is a device that allows a user to control an Arduino board through the use of a joystick. The module typically includes two potentiometers (one for the x-axis and one for the y-axis) and a push button. These components are connected to an analog input pins of the Acrome Actuator, and the Acrome Actuator software can then read the values of the potentiometers and button to determine the position and status of the joystick. 
  
@@ -67,7 +62,7 @@ To use the sensor, the data is read with an Attiny85 microcontroller and transmi
 Button
 ------------
 
- (Device ID:0x08 )
+(Device ID:0x08 )
 
 An button module is a device that allows a user to interact with an Acrome Actuator  by pressing a button. A button module typically includes a button that is connected to a digital input pin on the Acrome Actuator. When the button is pressed, it sends a digital signal to the input pin that can be read by the Acrome Actuator  software. 
 
@@ -79,11 +74,9 @@ To use the button, the data is read with the Attiny85 microcontroller and transm
 Current Sensor (INA226) 
 ------------
 
- Range min-max
-
- Voltage : 0-36 V
-
- Current : 20mA-20A
+Range min-max
+Voltage : 0-36 V
+Current : 20mA-20A
 
 The INA226 is a precision, high-side current and power monitor sensor from Texas Instruments. It is a fully integrated current shunt and power monitor with an I2C interface. The device can measure both DC and AC currents with a high degree of accuracy, and can also measure voltage, power and energy. The INA226 provides a precision instrumentation amplifier that amplifies the voltage across a shunt resistor and provides a precise voltage output proportional to current. The INA226 also includes a precision voltage reference and an I2C interface that allows the user to configure the device and read the current, voltage, power and energy data.
 
