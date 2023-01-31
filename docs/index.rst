@@ -40,7 +40,7 @@ Table of Contents
    Uart <uart>
    Native Protocol <native-protocol>
    Pwm <pwm>
-   Analog Input <analog-input>
+   Auto Tuner <autotuner>
    Thermistors <thermistors>
    Limit Switchs <limit-switchs>
 
