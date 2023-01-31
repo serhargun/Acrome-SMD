@@ -1,5 +1,5 @@
 Autotuner 
------------------
+===============
 
 PID (proportional-integral-derivative) control is a common control algorithm used in a variety of control systems, including those that regulate temperature, flow, pressure, and other process variables. Autotuning is the process of automatically adjusting the parameters of a PID controller to optimize its performance.
 
@@ -14,13 +14,13 @@ There are several reasons why autotuning PID controllers can be beneficial:
 Overall, autotuning PID controllers can help improve the performance and efficiency of control systems by optimizing the controller's parameters and adapting to changes in the process being controlled.
 
 Minimum output required for motor motion
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-----------------
 
 There is usually a minimum voltage required to supply to an electric motor in order to start it and keep it running. This is because the motor needs a certain amount of current to generate the magnetic field needed to produce torque and rotate the shaft. If the voltage supplied to the motor is too low, the current flowing through the motor will be insufficient to generate the necessary magnetic field, and the motor will not start or will stall if it is already running.
 To prevent this situation, the motor must be given a minimum output value.
 
 Ziegler Nichols
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-----------------
 
 The Ziegler-Nichols method is a simple and widely used method for autotuning PID controllers. It was developed in the 1940s by John G. Ziegler and Nathaniel B. Nichols, and is based on the idea of using a step response test to determine the optimal values for the controller's proportional, integral, and derivative gains.
 
@@ -29,12 +29,17 @@ The Ziegler-Nichols method involves the following steps:
 1. Set the controller's integral and derivative gains to zero and gradually increase the proportional gain until the system becomes unstable and begins oscillating.
 2. Measure the period of oscillation (the time it takes for one complete oscillation) and the amplitude of the oscillation (the maximum deviation from the setpoint).
 3. Use these measurements to calculate the recommended values for the proportional, integral, and derivative gains using the following formulas:
+
+
+.. figure:: figures/zieglerFormulas.png
+   :alt: zieglerFormulas
+
 4. Set the controller's gains to the recommended values.
 
 The Ziegler-Nichols method is simple and easy to use, but it can sometimes result in a controller that is overly aggressive or unstable.
 
 Cohen Coon
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-----------------
 
 Cohen-Coon tuning is a method for autotuning PID controllers that was developed by Norm Cohen and Bernard Coon in the 1960s. It is based on the idea of using a step response test to determine the optimal values for the controller's proportional, integral, and derivative gains.
 
@@ -50,7 +55,33 @@ The Cohen-Coon method involves the following steps:
 4. Gp calculation
  Gp = change in PV [in %] / change in CO [in %]
 
+.. figure:: figures/autotunerGraph.png
+   :alt: autotunerGraph
+
+
 5. Set the controller's gains to the recommended values.
 
+.. figure:: figures/cohenFormulas.png
+   :alt: cohenFormulas
+
 The Cohen-Coon method is similar to the Ziegler-Nichols method, but it is generally considered to be more conservative and less aggressive, resulting in a more stable controller. However, it can still result in a controller that is not optimal for all systems.
+
+
+Autotuner Method
+-----------------
+Users can select the preferred Autotuner method of the Actuator between the methods listed below.
+
+* Ziegler Nichols
+* Cohen Coon
+
+Note: Torque and autotuner must be enabled before choosing a method.
+
+Ziegler Nichols Method
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+When this Autotuner method is selected, the Actuator will tune control parameters according to the Ziegler Nichols method. To configure this Autotuner method, the user should set the Autotuner method register to 0x02.
+
+Cohen Coon
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+When this Autotuner method is selected, the Actuator will tune control parameters according to the Cohen Coon method. To configure this Autotuner method, the user should set the Autotuner method register to 0x03.
+
 
