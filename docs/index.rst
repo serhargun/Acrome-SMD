@@ -22,28 +22,27 @@ Table of Contents
 
 .. toctree::
    :maxdepth: 1
-   :caption: Tutorials
+   :caption: Actuator Board Specifications
 
-   RS-485 Guide <rs-guide>
-   UART Guide <uart-guide>
+   Pinout <pinout>
+   Sensors <sensors>
    Motor Guide <motor-guide>
    Encoder Guide <encoder-guide>
-
+   Thermistors <thermistors>
+   Pwm <pwm>
+   Limit Switchs <limit-switchs>
 
 .. toctree::
    :maxdepth: 1
    :caption: Interfaces and Protocols
    
    Protocol <protocol>
-   Pinout <pinout>
-   Sensors <sensors>
    Uart <uart>
-   Native Protocol <native-protocol>
-   Pwm <pwm>
+   UART Guide <uart-guide>
+   RS-485 Guide <rs-guide>
    Auto Tuner <autotuner>
-   Thermistors <thermistors>
-   Limit Switchs <limit-switchs>
-
+   
+   
 .. toctree::
    :maxdepth: 1
    :caption: Actuator Board API
