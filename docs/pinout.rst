@@ -7,6 +7,16 @@ GPIO Pins
 .. figure:: figures/GPIOPins.png
    :alt: GPIOPins
    
+GPIO Descriptions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. figure:: figures/board_withNumbers.png
+   :alt: board_withNumbers
+   
+.. figure:: figures/GPIO_description.png
+   :alt: GPIO_description
+
+   
 Peripheral Ports
 ---------
 
