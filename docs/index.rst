@@ -1,8 +1,8 @@
 ================================================================================
-Acrome Smart Motor Drivers - Brushed DC Motor Version Documentation
+Acrome SMD - Brushed DC Motor Version Documentation
 ================================================================================
 
-Welcome to Acrome Acrome SMD - Brushed DC Motor Version Documentation!
+Welcome to Acrome SMD - Brushed DC Motor Version Documentation!
 
 In this project, it is aimed that you can manage many motors and sensors provided 
 in the project through a master, thanks to the developed protocol. 
