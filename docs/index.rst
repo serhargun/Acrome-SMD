@@ -1,5 +1,5 @@
 ================================================================================
-Acrome SMD - Brushed DC Motor Version Documentation
+Acrome SMD Documentation
 ================================================================================
 
 Welcome to Acrome SMD - Brushed DC Motor Version Documentation!
