@@ -22,7 +22,7 @@ Table of Contents
 
 .. toctree::
    :maxdepth: 1
-   :caption: Brushed DC Motor Board Specifications
+   :caption: Board Specifications
 
    Pinout <pinout>
    Sensors <sensors>
