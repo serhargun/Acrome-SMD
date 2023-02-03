@@ -1,8 +1,8 @@
 ================================================================================
-Acrome Actuator Board's Documentation
+Acrome Smart Motor Drivers - Brushed DC Motor Version Documentation
 ================================================================================
 
-Welcome to Acrome Actuator Board's documentation!
+Welcome to Acrome Acrome SMD - Brushed DC Motor Version Documentation!
 
 In this project, it is aimed that you can manage many motors and sensors provided 
 in the project through a master, thanks to the developed protocol. 
@@ -22,14 +22,14 @@ Table of Contents
 
 .. toctree::
    :maxdepth: 1
-   :caption: Actuator Board Specifications
+   :caption: Brushed DC Motor Board Specifications
 
    Pinout <pinout>
    Sensors <sensors>
    Motor Guide <motor-guide>
    Encoder Guide <encoder-guide>
    Thermistors <thermistors>
-   Pwm <pwm>
+   PWM <pwm>
    Limit Switchs <limit-switchs>
 
 .. toctree::
@@ -45,7 +45,7 @@ Table of Contents
    
 .. toctree::
    :maxdepth: 1
-   :caption: Actuator Board API
+   :caption: Brushed DC Motor Board API
 
    API <api>
    Usage <usage>
