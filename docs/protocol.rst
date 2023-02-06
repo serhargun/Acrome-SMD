@@ -36,3 +36,117 @@ This register holds the error flags of the Actuator and should be used for clear
 Please refer to the table below for read/write operations on this register.
 
 
+1.4. Operation Mode
+~~~~~~~~~
+Users can select the preferred operation mode of the Actuator between the modes listed below.
+
+ * Position Control Mode (Default)
+ * Velocity Control Mode
+ * Torque Control Mode
+ 
+#. Position Control Mode: When this operation mode is selected, the Actuator will perform its movement according to position control mode parameters. Users can configure the Actuator to move to a specific position with this configuration. To configure this operation mode, the user should set the Operation Mode register to 0x00.
+
+#. Velocity Control Mode: When this operation mode is selected, the Actuator will perform its movement according to velocity control mode parameters. Users can configure the Actuator to move continuously at desired velocity with this configuration. To configure this operation mode, the user should set the Operation Mode register to 0x01.
+
+#. Torque Control Mode: When this operation mode is selected, the Actuator will perform its movement according to torque control mode parameters. Users can configure the Actuator to move with constant torque. To configure this operation mode, the user should set the Operation Mode register to 0x02.
+
+1.5. Temperature Limit
+~~~~~~~~~
+Users can configure the Actuator board’s upper temperature limit to a certain value. This register represents the temperature value in Celsius degrees and is configurable between 0 to 255.
+
+1.6. Torque Enable
+~~~~~~~~~
+This register controls the motor driver output. User should write 1 to enable motor driver output and 0 to disable.
+
+1.7. Autotuner Enable
+~~~~~~~~~
+This register controls the start to autotuner . User should write 1 to enable autotuner  and user can select autotuner methods.
+
+1.8. Minimum Voltage Limit
+~~~~~~~~~
+When the input voltage of the Actuator is lower than this register’s value, motor driver output of the Actuator will be disabled. The user can configure this value according to its own needs. This register can have values between 0-65535 and represents voltage limit in millivolts.
+
+1.9. Maximum Voltage Limit
+~~~~~~~~~
+When the input voltage of the Actuator is higher than this register’s value, motor driver output of the Actuator will be disabled. The user can configure this value according to its own needs. This register can have values between 0-65535 and represents voltage limit in millivolts
+
+1.10. Torque Limit Index
+~~~~~~~~~
+	When the absolute current flowing through the motor is higher than this value, motor driver output will be disabled. The user can configure this value according to its own needs. This register can have values between 0-65535 and represent current flowing through the motor in milliamps. This register is independent from the operation mode and always will be checked in any operation mode.
+
+1.11. Velocity Limit Index
+~~~~~~~~~
+When the absolute velocity of the motor is higher than this value, motor output will be disabled. The user can configure this value according to its own needs. This register can have values between 0-65535 and represents velocity as encoder ticks per 100ms. This register is independent from the operation mode and always will be checked in any operation mode.
+
+1.12. Autotuner Methods
+~~~~~~~~~
+Users can select the preferred Autotuner method of the Actuator between the methods  listed below.
+* Ziegler Nichols
+* Cohen Coon
+""! Torque and autotuner must be enabled  before choosing a method.""
+
+**Ziegler Nichols Method**
+ When this Autotuner method  is selected, the Actuator will tune control  parameters according to the Ziegler Nichols method. To configure this Autotuner method , the user should set the Autotuner method register to 0x02.
+
+**Cohen Coon**
+ When this Autotuner method  is selected, the Actuator will tune control  parameters according to the Cohen Coon  method. To configure this Autotuner method , the user should set the Autotuner method register to 0x03.
+ 
+1.13. Position Control Feed Forward
+~~~~~~~~~
+This register represents the feed forward parameter of the PID algorithm that is used for position control.
+
+1.14. Velocity Control Feed Forward
+~~~~~~~~~
+This register represents the feed forward parameter of the PID algorithm that is used for velocity control.
+
+1.15. Torque Control Feed Forward
+~~~~~~~~~
+This register represents the feed forward parameter of the PID algorithm that is used for torque control.
+
+1.16. Position Control Scaler Gain
+~~~~~~~~~
+This register represents the scaler gain parameter of the PID algorithm that is used for position control.
+
+1.17. Position Control P Gain
+~~~~~~~~~
+This register represents the kp parameter of the PID algorithm that is used for position control.
+
+1.18. Position Control I Gain
+~~~~~~~~~
+This register represents the ki parameter of the PID algorithm that is used for position control.
+
+1.19. Position Control D Gain
+~~~~~~~~~
+This register represents the kd parameter of the PID algorithm that is used for position control.
+
+1.20. Velocity Control Scaler Gain
+~~~~~~~~~
+This register represents the scaler gain parameter of the PID algorithm that is used for velocity control.
+
+1.21. Velocity Control P Gain
+~~~~~~~~~
+This register represents the kp parameter of the PID algorithm that is used for velocity control.
+
+1.22. Velocity Control I Gain
+~~~~~~~~~
+This register represents the ki parameter of the PID algorithm that is used for velocity control.
+
+1.23. Velocity Control D Gain
+~~~~~~~~~
+This register represents the kd parameter of the PID algorithm that is used for velocity control.
+
+1.24. Torque Control Scaler Gain
+~~~~~~~~~
+This register represents the scaler gain parameter of the PID algorithm that is used for torque control.
+
+1.25. Torque Control P Gain
+~~~~~~~~~
+This register represents the kp parameter of the PID algorithm that is used for torque control.
+
+1.26. Torque Control I Gain
+~~~~~~~~~
+This register represents the ki parameter of the PID algorithm that is used for torque control.
+
+1.27. Torque Control D Gain
+~~~~~~~~~
+This register represents the kd parameter of the PID algorithm that is used for torque control.
