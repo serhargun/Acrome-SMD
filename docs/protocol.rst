@@ -1,3 +1,6 @@
+RS-485 Protocol
+================
+
 1. Registers
 ---------
 
@@ -261,3 +264,47 @@ This register holds the firmware version of the Actuator board.
 1.48. Error Count
 ~~~~~~~~~
 This register holds the count of total errors since the last reboot. Whenever an error occurred, this value incremented by 1. This register can be used to diagnose errors on the Actuators. For example, high error count value with communication error flag raised status register might be indicating an issue with communication bus connections or buggy protocol implementation.
+
+2. Protocol Overview
+---------
+
+The protocol is working on a UART interface at up to 9M baud. Each package transmitted from the master device needs to be followed by a delay of minimum 1-byte-long of the selected baud rate at the time. However, a 2-byte-long delay is recommended to tolerate any possible timing issues since UART is an asynchronous communication interface.
+	
+Each package must have a preliminary information part before data bytes and an MPEG2 CRC32 value at the end of the package. These values are disclosed in Table 1. The whole communication protocol is based on little-endian architecture.
+
+**Note:** If the user wants to broadcast a command to all the slave devices in the communication line, Device ID field should set to 0xFF. When a broadcast massage is transmitted, no reply will be received from any of the Actuators on the bus.
+
+2.1. Command Types
+~~~~~~~~~
+
+2.1.1. Ping Command
+**********************
+When the Actuator receives a package with a ping command, it will reply to the user with a ping package. The only difference between two packages is the 4th byte of the package that has been sent to the Actuator is the status register of the device.
+
+2.1.2. Write Command
+**********************
+When the user wants to change the registers of the Actuator, the user should send a package that contains information about the required register pointers and register values with this command. The user should place pointer values and register data in the data field of the package template according to the given example below.
+
+2.1.3. Read Command
+**********************
+When the user wants to read the registers of the Actuator, the user should send a package that contains information about the required register pointers with this command. The user should place pointer values in the data field of the package template according to the given example below.
+
+2.1.4. EEPROM Write Command
+**********************
+When the user wants to save already-written data to the non-volatile memory of the Actuator, should send a package with this command. Actuators do not respond this command. Execution of this command takes about 300ms since writing to flash memory is a relatively slow operation. Keeping torque output disabled is recommended but not mandatory while sending this command.
+
+2.1.5. Reboot Command
+**********************
+When the user wants to reboot the device, should send a package with this command. The device will be rebooted immediately and all parameters on the RAM will be replaced with the values that stored on the EEPROM.
+
+2.1.6. Factory Reset Command
+**********************
+When the user wants to replace all parameters with the default ones, should send a package with this command. When this command is sent, Actuator is going to reset all parameters to their out-of-factory values, including ones that are saved to the EEPROM.
+
+2.1.7. Error Clear Command
+**********************
+When the user wants to clear any errors on the Actuator, should send a package with this command. Users should set the status field of the package with the flags of the errors that will be cleared. To clear all errors, the user should set the status field to 0xFF. For details of error flags, see the Status register description.
+
+2.1.8. ACK Flag
+**********************
+When the user wants to get a reply from Actuator after write command, should set the 7th bit of the command register. If the user sends ACK, the Actuator will return all of its parameters as the reply. Ping packages always get replies from the Actuators.
