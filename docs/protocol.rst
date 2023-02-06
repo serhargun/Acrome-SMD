@@ -72,7 +72,7 @@ When the input voltage of the Actuator is higher than this register’s value, m
 
 1.10. Torque Limit Index
 ~~~~~~~~~
-	When the absolute current flowing through the motor is higher than this value, motor driver output will be disabled. The user can configure this value according to its own needs. This register can have values between 0-65535 and represent current flowing through the motor in milliamps. This register is independent from the operation mode and always will be checked in any operation mode.
+When the absolute current flowing through the motor is higher than this value, motor driver output will be disabled. The user can configure this value according to its own needs. This register can have values between 0-65535 and represent current flowing through the motor in milliamps. This register is independent from the operation mode and always will be checked in any operation mode.
 
 1.11. Velocity Limit Index
 ~~~~~~~~~
@@ -150,3 +150,111 @@ This register represents the ki parameter of the PID algorithm that is used for 
 1.27. Torque Control D Gain
 ~~~~~~~~~
 This register represents the kd parameter of the PID algorithm that is used for torque control.
+
+1.28. Home Offset
+~~~~~~~~~
+This register is for moving the zero point of the position control algorithm to a desired point. When this parameter is set to a value, the motor will move to provide this offset. Requires torque enable register to be enabled.
+
+**Recommended use of this parameter is moving the motor to the desired offset position and then changing offset to desired value. This way, changing the register will not trigger a movement.**
+
+1.29. Minimum Position
+~~~~~~~~~
+Users can configure a software limit switch with this register. When the Actuator’s position reaches to this value, it will not move further in negative direction. This parameter is bound to position control operation mode and will not be checked while operating in other modes.
+
+1.30. Maximum Position
+~~~~~~~~~
+Users can configure a software limit switch with this register. When the Actuator’s position reaches to this value, it will not move further in positive direction. This parameter is bound to position control operation mode and will not be checked while operating in other modes.
+
+1.31. Position Control Setpoint
+~~~~~~~~~
+This register is the setpoint of the position control algorithm. Register range is from 0 to 65535.
+
+1.32. Velocity Control Setpoint
+~~~~~~~~~
+This register is the setpoint of the velocity control algorithm. Register range is from 0 to 65535.
+
+1.33. Torque Control Setpoint
+~~~~~~~~~
+This register is the setpoint of the torque control algorithm. Register range is from 0 to 5000.
+
+1.34. Buzzer Enable
+~~~~~~~~~
+This register sends  request to the buzzer module.
+
+1.35. Present Position
+~~~~~~~~~
+This register represents the position of the motor in encoder ticks in that time.
+
+1.36. Present Velocity
+~~~~~~~~~
+This register represents the velocity of the motor in encoder ticks / 100ms.
+
+1.37. Present Current
+~~~~~~~~~
+This register represents the torque of the motor in milliamps in that time.
+
+1.38. Present Voltage
+~~~~~~~~~
+This register represents the input voltage of the Actuator in millivolts in that time.
+
+1.39. Present Temperature
+~~~~~~~~~
+This register represents the circuit board temperature in Celsius in that time.
+
+1.40. IMU
+~~~~~~~~~
+There are 2 register for IMU sensor.Present roll and pitch registers.
+
+* Roll register
+ This register represents the roll data of IMU
+
+* Pitch register
+ This register represents the pitch data of IMU 
+
+1.41. Light Intensity
+~~~~~~~~~
+This register represents the intensity of light .
+	
+1.42. Button Pressed
+~~~~~~~~~
+This register represents the button status.If button is pressed ,register send 1 value 
+
+1.43. Present Distance
+~~~~~~~~~
+This register represents the distance between sensors and objects.
+
+1.44. Joysticks
+~~~~~~~~~
+There are 3 registers for Joysticks X, Y and Button registers.
+
+* Joysticks X 
+ The  register represents the x-axis position of joysticks. While moving the joystick button on the x-axis,register value will change between 0 and 1023.AlsoY-axis initial value changes around 500.
+
+* Joysticks Y
+ The  register represents the y-axis position of joysticks.While moving the joystick button on the Y-axis,register value will change between 0 and 1023.AlsoY-axis initial value changes around 500.
+
+* Joysticks Button
+ This register represents the button status.If button is pressed ,register send 1 value
+
+1.45. QTR
+~~~~~~~~~
+There are 3 registers for QTR .left,right and mid.
+
+* Right 
+ This register represents the right phototransistor.If there is an object in front of the photo-transistor,this register will send 1 value.
+* Mid
+ This register represents the mid phototransistor.If there is an object in front of the photo-transistor,this register will send 1 value.
+* Left
+ This register represents the left phototransistor.If there is an object in front of the photo-transistor,this register will send 1 value.
+
+1.46. Model Number
+~~~~~~~~~
+This register holds the model number of the Actuator board.
+
+1.47. Firmware Version
+~~~~~~~~~
+This register holds the firmware version of the Actuator board.
+
+1.48. Error Count
+~~~~~~~~~
+This register holds the count of total errors since the last reboot. Whenever an error occurred, this value incremented by 1. This register can be used to diagnose errors on the Actuators. For example, high error count value with communication error flag raised status register might be indicating an issue with communication bus connections or buggy protocol implementation.
