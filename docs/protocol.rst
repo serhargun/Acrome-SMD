@@ -39,6 +39,8 @@ This register holds the error flags of the Actuator and should be used for clear
 
 Please refer to the table below for read/write operations on this register.
 
+.. figure:: figures/registers.png
+   :alt: registers
 
 1.4. Operation Mode
 ~~~~~~~~~
