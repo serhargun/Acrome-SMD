@@ -75,26 +75,6 @@ How to use ? :
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 To use the button, the data is read with the Attiny85 microcontroller and transmitted to the actuator card using the I2C communication protocol. The size of the data coming from this sensor on the I2C line is 1 byte. The sensor module is designed as a plug-in and has 2 RC11 sockets on the module, allowing the sensor data of both sockets to be read. The Actuator.Sensors.buttonPressed value in the code represents the button status read from the sensor.
 
-.. _CurrentSensor:
-Current Sensor (INA226) 
-------------
-
- Range min-max
-
- Voltage : 0-36 V
-
- Current : 20mA-20A
-
-The INA226 is a precision, high-side current and power monitor sensor from Texas Instruments. It is a fully integrated current shunt and power monitor with an I2C interface. The device can measure both DC and AC currents with a high degree of accuracy, and can also measure voltage, power and energy. The INA226 provides a precision instrumentation amplifier that amplifies the voltage across a shunt resistor and provides a precise voltage output proportional to current. The INA226 also includes a precision voltage reference and an I2C interface that allows the user to configure the device and read the current, voltage, power and energy data.
-
-The INA226 has a high accuracy, low noise, low power consumption and wide common-mode voltage range which makes it ideal for measuring high side currents in a wide variety of applications. Additionally, the INA226 module can be connected to an Acrome Actuator using the I2C interface to read and process the measured data.
-
-It is important to note that the INA226 requires an external shunt resistor to be connected to the current path. Also, the accuracy of the device may be affected by the temperature and the load conditions.
-
-How to use ? :
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Data from the current sensor is read by the Attiny85 microcontroller. The size of the data coming from the sensor on the I2C line is 2 bytes. The sensor module is designed as a plug-in and has 2 RC11 sockets on the module, allowing the sensor data of both sockets to be read. The Actuator.Sensors.current value in the code represents the current, measured in Amperes. The sensor data is transmitted to the actuator card using the I2C communication protocol. It's important to note that the current sensor's output may be affected by the voltage and resistance of the circuit and by the ambient temperature and humidity.
-
 .. _IMU:
 IMU (MPU9250)
 ------------
