@@ -86,7 +86,7 @@ Users can select the preferred Autotuner method of the Actuator between the meth
 * Ziegler Nichols
 * Cohen Coon
 
-*! Torque and autotuner must be enabled  before choosing a method.*
+**!** *Torque and autotuner must be enabled  before choosing a method.*
 
 **Ziegler Nichols Method**
  When this Autotuner method  is selected, the Actuator will tune control  parameters according to the Ziegler Nichols method. To configure this Autotuner method , the user should set the Autotuner method register to 0x02.
