@@ -14,7 +14,7 @@ sys.path.insert(0, os.path.abspath('./figures'))
 sys.path.insert(0, os.path.abspath('./exts')) 
 
 project = 'Acrome Smart Motor Drivers'
-copyright = '2022, Acrome Robotics'
+copyright = '2023, Acrome Robotics'
 author = 'Acrome Robotics'
 
 # -- General configuration
