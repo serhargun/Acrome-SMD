@@ -282,6 +282,9 @@ Each package must have a preliminary information part before data bytes and an M
 2.1. Command Types
 ~~~~~~~~~
 
+.. figure:: figures/commandTypes.png
+   :alt: commandTypes
+
 2.1.1. Ping Command
 **********************
 When the Actuator receives a package with a ping command, it will reply to the user with a ping package. The only difference between two packages is the 4th byte of the package that has been sent to the Actuator is the status register of the device.
@@ -290,9 +293,15 @@ When the Actuator receives a package with a ping command, it will reply to the u
 **********************
 When the user wants to change the registers of the Actuator, the user should send a package that contains information about the required register pointers and register values with this command. The user should place pointer values and register data in the data field of the package template according to the given example below.
 
+.. figure:: figures/writeCommand.png
+   :alt: writeCommand
+
 2.1.3. Read Command
 **********************
 When the user wants to read the registers of the Actuator, the user should send a package that contains information about the required register pointers with this command. The user should place pointer values in the data field of the package template according to the given example below.
+
+.. figure:: figures/readCommand.png
+   :alt: readCommand
 
 2.1.4. EEPROM Write Command
 **********************
