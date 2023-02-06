@@ -274,6 +274,9 @@ The protocol is working on a UART interface at up to 9M baud. Each package trans
 	
 Each package must have a preliminary information part before data bytes and an MPEG2 CRC32 value at the end of the package. These values are disclosed in Table 1. The whole communication protocol is based on little-endian architecture.
 
+.. figure:: figures/protocolOverview.png
+   :alt: protocolOverview
+
 **Note:** If the user wants to broadcast a command to all the slave devices in the communication line, Device ID field should set to 0xFF. When a broadcast massage is transmitted, no reply will be received from any of the Actuators on the bus.
 
 2.1. Command Types
