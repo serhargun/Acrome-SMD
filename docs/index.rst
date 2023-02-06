@@ -26,29 +26,21 @@ Table of Contents
 
    Pinout <pinout>
    Sensors <sensors>
-   Motor Guide <motor-guide>
-   Encoder Guide <encoder-guide>
-   Thermistors <thermistors>
-   PWM <pwm>
-   Limit Switchs <limit-switchs>
 
 .. toctree::
    :maxdepth: 1
    :caption: Interfaces and Protocols
    
-   Protocol <protocol>
-   Uart <uart>
+   Protocol-RS-485 Guide <protocol>
    UART Guide <uart-guide>
-   RS-485 Guide <rs-guide>
-   Auto Tuner <autotuner>
-   
+   Auto-Tuner <autotuner>
    
 .. toctree::
    :maxdepth: 1
    :caption: Brushed DC Motor Board API
 
-   API <api>
-   Usage <usage>
+   Python API <api>
+   Arduino Library <usage>
 
 .. toctree::
    :maxdepth: 1
