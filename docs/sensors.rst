@@ -19,8 +19,8 @@ How to use ? :
 
 Data from the sensor is read with Attiny85 and transmitted to the actuator card with the I2C line.The size of the data coming from this sensor with the I2C line is 2 bytes.The sensor module is designed as plug-in.There are 2 RC11 sockets on the module. The sensor data of both sockets can be read. The Actuator.Sensors.distance value in the code is the 2-byte distance data read from the sensor.The distance data read from the sensor was converted into centimeters in Attiny and transferred to the communication line.The sensor is widely used in various applications such as obstacle avoidance, distance measurement, and automation projects. It's easy to use and provides a high precision distance measurement.Please note that the sensor's accuracy can be affected by the object's reflective property, and the ambient temperature. Also, the sensor has a range of 2cm to 400cm, and it's not suitable for measuring short distances or distances less than 2cm.
 
-.. _QTR:
-QTR
+.. _QTR-3A:
+QTR-3A
 ------------
 
  (Device ID: 0x0A)
