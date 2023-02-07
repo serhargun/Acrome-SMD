@@ -230,7 +230,8 @@ addActuator()
 
 This method, adds new Actuator to the list of the Master instance for further operations. All Actuator objects of the Master instance can be accessed via Actuators variable of the class. Index of the Actuator object is same as the ID. But user should be careful about accessing Actuator objects since Actuators variable holding empty cells too.
 
-::
+.. code-block:: python
+   :linenos:
 
    m.addActuator(96)
 
@@ -247,7 +248,8 @@ removeActuator()
 
 This method, removes the Actuator with the given ID from the private list of the Master instance for further operations.
 
-::
+.. code-block:: python
+   :linenos:
 
    m.removeActuator(96)
 
@@ -261,7 +263,8 @@ send()
 
 This method is a simple wrapper for serial write operations.
 
-::
+.. code-block:: python
+   :linenos:
 
    m.send(m.Actuators[96].Ping())
 
@@ -274,7 +277,8 @@ receive()
 
 This method is a simple wrapper for serial read operations. Returns all available data on the bus as a list.
 
-::
+.. code-block:: python
+   :linenos:
    
    data = m.receive()
 
@@ -288,7 +292,8 @@ pass2buffer()
 
 This method passes incoming data to the internal Circular Buffer.
 
-::
+.. code-block:: python
+   :linenos:
 
    data = m.receive()
    m.pass_to_buffer(data)
@@ -301,7 +306,8 @@ findPackage()
 
 This method is used to process the buffer of the Master instance. When a valid package found on the buffer, the Master will update the relevant Actuator object(s).
 
-::
+.. code-block:: python
+   :linenos:
 
    data = m.receive()
    m.pass_to_buffer(data)
