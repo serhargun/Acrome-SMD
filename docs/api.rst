@@ -1,3 +1,6 @@
+============
+Python Library
+============
 
 Introduction
 ============
@@ -21,7 +24,6 @@ User should access all data in the Actuator objects like below:
 
 .. code-block:: python
    :linenos:
-   :emphasize-lines: 1
 
     act = Actuator(0)
     act.Configuration.data.torqueEnable.data = 1
@@ -33,7 +35,8 @@ __init__(ID):
 
 * ID: Device ID of the Actuator Board
 
-::
+.. code-block:: python
+   :linenos:
 
    from actuator import *
    myActuator = Actuator(0)
@@ -47,7 +50,8 @@ Ping():
 
 This method is used for generating a ping package for the related Actuator. Ping packages are useful for checking Actuators on the bus.
 
-::
+.. code-block:: python
+   :linenos:
 
    ping_data = myActuator.Ping()
    user_defined_serial_write_function(ping_data)
@@ -59,6 +63,7 @@ Read(params=[], full=False):
 
 *params:* List of parameter indexes to be read.
 *full:* Request for full read. Default value is false.
+
 *Returns:* list that contains read command package of given variables.
 
 This method is used for generating a package for reading variables from the Actuator board.
@@ -67,7 +72,8 @@ When full parameter set to true, params is ignored and full package request is g
 
 When full parameter is set to false, method generates a package to read given list of parameter indexes. Valid indexes are defined in Parameters class and can be accessed as class members.
 
-::
+.. code-block:: python
+   :linenos:
 
    #Read all variables at once
    read_pkg = myActuator.Read([],full=True)
@@ -86,11 +92,13 @@ Write(Act)
 
 *Act:* An Actuator object with the desired parameter set.
 *param_list:* List of parameters to be updated.
+
 *Returns:* list that contains write command package of changed variables.
 
 This method takes an object as the new state and compares with the actual Actuator. At the end of the comparison, a package that changes these variables will be generated. User can use the copy module to create a deep copy of the Actuator object, change desired parameters and pass to the module or can create a temporary Actuator object with a parameter list with elements as instances of Parameters class variables in param_list. When user pass a parameter list, only given parameters will be changed regardless of the passed object.
 
-::
+.. code-block:: python
+   :linenos:
 
    import copy
 
@@ -106,7 +114,8 @@ This method takes an object as the new state and compares with the actual Actuat
    #Send over serial
    user_defined_serial_write_function(write_pkg)
 
-::
+.. code-block:: python
+   :linenos:
 
    #Create a temporary object
    Act = Actuator(0)
@@ -129,7 +138,8 @@ Reboot()
 
 This method generates a reboot command package to reboot the Actuator.
 
-::
+.. code-block:: python
+   :linenos:
 
    reboot_data = myActuator.Reboot()
    user_defined_serial_write_function(reboot_data)
@@ -142,7 +152,8 @@ FactoryReset()
 
 This method generates a factory reset command package to take the Actuator back to the factory defaults.
 
-::
+.. code-block:: python
+   :linenos:
 
    fr_data = myActuator.FactoryReset()
 
@@ -157,7 +168,8 @@ ROMWrite()
 
 This method generates a ROM write command package to save parameters to the non-volatile memory.
 
-::
+.. code-block:: python
+   :linenos:
 
    romwrite_data = myActuator.ROMWrite()
    user_defined_serial_write_function(romwrite_data)
@@ -171,7 +183,8 @@ parse(package)
 
 This method parses the received package and updates values of the Actuator object. This method does not check received package's integrity. For a safer communication, use the Master interface which is provided with this SDK.
 
-::
+.. code-block:: python
+   :linenos:
 
    #Read all variables at once
    read_pkg = myActuator.Read([],full=True)
@@ -197,11 +210,13 @@ __init__()
 *portname:* Name of the serial port
 *baudrate:* Baudrate of the serial port. Default is 115200.
 *master_timeout:* Timeout value for Actuator bus in seconds. Default is 10ms.
+
 *Returns:* None
 
 Constructor of this class is responsible for configuring Circular Buffer for serial along with the serial port itself. User should provide a valid serial port name. Buffer size parameter must a power of 2. Recomended minimum value is 256. Recomended value is 4096 for general use.
 
-::
+.. code-block:: python
+   :linenos:
 
    m = Master(4096, '/dev/ttyUSB0', 115200, 0.01)
    
@@ -300,7 +315,10 @@ AutoScan()
 *Returns:* None
 
 This method is for scanning the bus and attaching the Actuators on the bus to the Master instance. This automates and simplifies the initialization stage of the class.
-::
+
+.. code-block:: python
+   :linenos:
 
    m = Master(4096, '/dev/ttyUSB0', 115200, 0.01)
    m.AutoScan() #This line scans and adds Actuators.
+
