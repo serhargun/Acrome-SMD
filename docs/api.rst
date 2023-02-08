@@ -5,7 +5,7 @@ Python Library
 Introduction
 ============
 
-Actuator Python SDK allows you to manage multiple Actuator boards with Python3. This SDK handles protocol implementation of the Actuator Boards alongside a Master interface that holds multiple Actuators and controls serial port for best performance. SDK developed to enable async communication with Actuators.
+Acrome SMD Python SDK allows you to manage multiple Acrome SMD boards with Python3. This SDK handles protocol implementation of the Acrome SMD Boards alongside a Master interface that holds multiple Actuators and controls serial port for best performance. SDK developed to enable async communication with Actuators.
 
 Classes and Methods
 ==================
