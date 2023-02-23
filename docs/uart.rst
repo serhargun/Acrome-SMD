@@ -1,34 +1,22 @@
-Usage
-=====
+Ardunio Library
+================
 
-.. _installation:
+How to set up? Step by step
+---------------------------
 
-Installation
-------------
+* İnstall this code https://github.com/Acrome-Robin/SmartActuator_Ardunio_Library 
+* Unzip this file 
+* Move this file to the Arduino library . (Default library location C:\Users\Documents\Arduino\libraries)
+* If you will install first library, you can create folder called "libraries"
 
-To use Lumache, first install it using pip:
+How can I include the Actuator library in my Arduino code?
+-----------------------------------------------------------
 
-.. code-block:: console
+To include the Actuator library in your Arduino code, follow these steps:
 
-   (.venv) $ pip install lumache
+1. Open the Arduino IDE.
+2. Click on "Sketch" in the top menu bar.
+3. Go to "Include Library" and click on "SmartActuator_Arduino_Library".
+4. Now you can use the functions and features of the Actuator library in your code.
 
-Creating recipes
-----------------
-
-To retrieve a list of random ingredients,
-you can use the ``lumache.get_random_ingredients()`` function:
-
-.. autofunction:: lumache.get_random_ingredients
-
-The ``kind`` parameter should be either ``"meat"``, ``"fish"``,
-or ``"veggies"``. Otherwise, :py:func:`lumache.get_random_ingredients`
-will raise an exception.
-
-.. autoexception:: lumache.InvalidKindError
-
-For example:
-
->>> import lumache
->>> lumache.get_random_ingredients()
-['shells', 'gorgonzola', 'parsley']
-
+Note: Make sure that the Actuator library is installed correctly and located in the Arduino library folder.
