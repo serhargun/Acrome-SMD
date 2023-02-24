@@ -4,7 +4,7 @@ Arduino Library
 How to set up? Step by step
 ---------------------------
 
-* İnstall this code https://github.com/Acrome-Robin/SmartActuator_Ardunio_Library 
+* İnstall this code https://github.com/Acrome-Robin/SmartActuator_Arduino_Library 
 * Unzip this file 
 * Move this file to the Arduino library . (Default library location C:\Users\Documents\Arduino\libraries)
 * If you will install first library, you can create folder called "libraries"
