@@ -14,9 +14,6 @@ How can I include the Actuator library in my Arduino code?
 .. figure:: figures/includeactuatorlibrary.png
    :alt: IncludeActuatorLibrary
 
-Example code
-================
-
 tAutotuneMethod
 ----------------
 
