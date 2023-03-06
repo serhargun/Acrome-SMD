@@ -44,6 +44,10 @@ Table of Contents
 
 .. toctree::
    :maxdepth: 1
+   :caption: Example Codes
+
+.. toctree::
+   :maxdepth: 1
    :caption: For Developers
 
    Developer Guide <developer-guide>
