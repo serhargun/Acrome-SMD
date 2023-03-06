@@ -55,8 +55,15 @@ Table of Contents
 
    Developer Guide <developer-guide>
    Configuring Vscode <configuring-vscode>
+  
+.. toctree::
+   :caption: CONTACT
+
+   Reach Us <usage>
 
 .. toctree::
    :caption: CHANGELOG
 
    changelog.rst <changelog>
+   
+
