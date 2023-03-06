@@ -46,8 +46,8 @@ Table of Contents
    :maxdepth: 1
    :caption: Example Codes
 
-   Python Examples 
-   Arduino Examples
+   Python Examples <api>
+   Arduino Examples <api>
    
 .. toctree::
    :maxdepth: 1
