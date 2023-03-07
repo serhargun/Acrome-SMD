@@ -32,7 +32,7 @@ Table of Contents
    :caption: Interfaces and Protocols
    
    Protocol-RS-485 Guide <protocol>
-   UART Guide <uart>
+   UART Guide <usage>
    Auto-Tuner <autotuner>
    
 .. toctree::
@@ -40,7 +40,7 @@ Table of Contents
    :caption: Brushed DC Motor Board API
 
    Python API <api>
-   Arduino Library <usage>
+   Arduino Library <uart>
 
 .. toctree::
    :maxdepth: 1
