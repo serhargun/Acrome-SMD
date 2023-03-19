@@ -32,7 +32,6 @@ Table of Contents
    :caption: Interfaces and Protocols
    
    Protocol-RS-485 Guide <protocol>
-   UART Guide <usage>
    Auto-Tuner <autotuner>
    
 .. toctree::
