@@ -1,4 +1,4 @@
-Example code - 
+Arduino Example code
 ============
 
 Sweep Motor
