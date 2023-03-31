@@ -47,21 +47,22 @@ Table of Contents
 
    Python Examples <python_examples>
    Arduino Examples <arduino_examples>
-   
+..   
 .. toctree::
-   :maxdepth: 1
-   :caption: For Developers
-
-   Developer Guide <developer-guide>
-   Configuring Vscode <configuring-vscode>
+..   :maxdepth: 1
+..   :caption: For Developers
+..
+..   Developer Guide <developer-guide>
+..   Configuring Vscode <configuring-vscode>
   
 .. toctree::
    :caption: CONTACT
 
-   Reach Us <usage>
-
+   Reach Us <contact>
+   
+..
 .. toctree::
-   :caption: CHANGELOG
+..   :caption: CHANGELOG
 
    changelog.rst <changelog>
    
