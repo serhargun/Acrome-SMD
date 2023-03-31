@@ -14,8 +14,8 @@ Acrome's website can be found at `https://acrome.net`
 Social Media
 ------------
 You can also follow us on our social media accounts to stay up to date on our latest news and promotions:
-- Twitter: @AcromeRobotics
-- Facebook: @acromerobotics
-- Instagram: @acrome_robotics
+ - Twitter: @AcromeRobotics
+ - Facebook: @acromerobotics
+ - Instagram: @acrome_robotics
 
 We appreciate your interest in Acrome and look forward to hearing from you!
