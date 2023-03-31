@@ -1,7 +1,7 @@
 Getting Started
 =====
 
-The ACROME SMD - Brushed DC Motor Driver
+ACROME SMD RED - Brushed DC Motor Driver
 -----------------
 
 A powerful solution for many system development, the ACROME SMD - Brushed DC Motor Driver board is equipped with a set of sensors and utilizes the I2C line to provide real-time readings. It is specifically designed to make controlling DC motors in mobile robots easy and convenient.
