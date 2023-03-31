@@ -18,9 +18,9 @@ Social Media
 
 Stay up to date on our latest news and promotions by following us on our social media accounts:
 
-* Twitter: `@AcromeRobotics <https://twitter.com/AcromeRobotics>`_
-* Facebook: `@acromerobotics <https://www.facebook.com/acromerobotics>`_
-* Instagram: `@acrome_robotics <https://www.instagram.com/acrome_robotics>`_
+ - Twitter: `@AcromeRobotics <https://twitter.com/AcromeRobotics>`_
+ - Facebook: `@acromerobotics <https://www.facebook.com/acromerobotics>`_
+ - Instagram: `@acrome_robotics <https://www.instagram.com/acrome_robotics>`_
 
 We appreciate your interest in Acrome and look forward to hearing from you!
 
