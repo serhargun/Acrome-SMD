@@ -1,33 +1,29 @@
-Usage
-=====
+Example code - 
+============
 
-.. _installation:
+Sweep Motor
+-----------
+Required equipment:
+- DC motor
+- ACROME SDK -Red
 
-Installation
-------------
 
-To use Lumache, first install it using pip:
+.. code-block:: cpp
 
-.. code-block:: console
+   #include <Actuator.h>
+   Actuator myActuator(0,Serial);
+   float position;
 
-   (.venv) $ pip install lumache
+   void setup() {
+       myActuator.begin(115200);
+       myActuator.setOperationMode(PositionControl);    
+   }
 
-Creating recipes
-----------------
+   void loop() { 
+       myActuator.torqueEnable(1);
+       position = myActuator.getPosition();
+       myActuator.setpoint(PositionControl,position+500.0);
+       delay(1500);
+       position =(position>25000)?0:position;
+   }
 
-To retrieve a list of random ingredients,
-you can use the ``lumache.get_random_ingredients()`` function:
-
-.. autofunction:: lumache.get_random_ingredients
-
-The ``kind`` parameter should be either ``"meat"``, ``"fish"``,
-or ``"veggies"``. Otherwise, :py:func:`lumache.get_random_ingredients`
-will raise an exception.
-
-.. autoexception:: lumache.InvalidKindError
-
-For example:
-
->>> import lumache
->>> lumache.get_random_ingredients()
-['shells', 'gorgonzola', 'parsley']
