@@ -12,10 +12,9 @@ Required equipment:
 
 .. code-block:: python
 
-    from acrome_smd import actuator
+    from smd import actuator
     import time
     import copy
-    import pandas as pd
 
     master = actuator.Master(4096, '/dev/ttyUSB0', baudrate=115200)
     master.AutoScan()
