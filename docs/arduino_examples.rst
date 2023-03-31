@@ -5,7 +5,7 @@ Sweep Motor
 -----------
 Required equipment:
  - DC motor
- - ACROME SDK -Red
+ - ACROME SMD -Red
 
 
 .. code-block:: cpp
