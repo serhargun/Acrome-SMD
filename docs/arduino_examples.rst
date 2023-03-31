@@ -4,8 +4,8 @@ Example code -
 Sweep Motor
 -----------
 Required equipment:
-- DC motor
-- ACROME SDK -Red
+ - DC motor
+ - ACROME SDK -Red
 
 
 .. code-block:: cpp
