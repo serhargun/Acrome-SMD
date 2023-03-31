@@ -5,17 +5,22 @@ Thank you for your interest in Acrome Smart Motor Driver. Please use the followi
 
 Email
 -----
-You can email us at info@acrome.net. We will do our best to respond to your email within 24 hours.
+
+You can reach us via email at info@acrome.net. We aim to respond to all emails within 24 hours.
 
 Website
-------------
-Acrome's website can be found at `https://acrome.net`
+-------
+
+Visit Acrome's website at https://acrome.net.
 
 Social Media
 ------------
-You can also follow us on our social media accounts to stay up to date on our latest news and promotions:
- - Twitter: @AcromeRobotics
- - Facebook: @acromerobotics
- - Instagram: @acrome_robotics
+
+Stay up to date on our latest news and promotions by following us on our social media accounts:
+
+* Twitter: `@AcromeRobotics <https://twitter.com/AcromeRobotics>`_
+* Facebook: `@acromerobotics <https://www.facebook.com/acromerobotics>`_
+* Instagram: `@acrome_robotics <https://www.instagram.com/acrome_robotics>`_
 
 We appreciate your interest in Acrome and look forward to hearing from you!
+
