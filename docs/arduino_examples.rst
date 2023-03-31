@@ -10,8 +10,8 @@ Required equipment:
 
 .. code-block:: cpp
 
-   #include <Actuator.h>
-   Actuator myActuator(0,Serial);
+   #include <acromesmd.h>
+   AcromeSMD myActuator(0,Serial);
    float position;
 
    void setup() {
