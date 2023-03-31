@@ -1,33 +1,75 @@
-Usage
-=====
+Python Example code
+============
 
-.. _installation:
+AutoTuner 
+-----------
 
-Installation
-------------
+In this Python example, the connected motor performs the auto-tune process according to the Ziegler-Nichols method. The calculated values are then stored in the ROM of the Acrome SMD board, and the motor moves to the setpoint value entered by the user
 
-To use Lumache, first install it using pip:
+Required equipment:
+ - DC motor
+ - ACROME SMD -Red
 
-.. code-block:: console
+.. code-block:: python
 
-   (.venv) $ pip install lumache
+    from acrome_smd import actuator
+    import time
+    import copy
+    import pandas as pd
 
-Creating recipes
-----------------
+    master = actuator.Master(4096, '/dev/ttyUSB0', baudrate=115200)
+    master.AutoScan()
 
-To retrieve a list of random ingredients,
-you can use the ``lumache.get_random_ingredients()`` function:
+    print(f"Number of Actuator boards connected: {len(master.ActList)}")
 
-.. autofunction:: lumache.get_random_ingredients
+    if(len(master.ActList) == 0):
+        raise ConnectionError("No Actuator boards detected. Check cable connections!")
+    print(f" The connected Actutators' IDs : {master.ActList}")
 
-The ``kind`` parameter should be either ``"meat"``, ``"fish"``,
-or ``"veggies"``. Otherwise, :py:func:`lumache.get_random_ingredients`
-will raise an exception.
+    # Initial full package read of Actuator parameters
+    for act_id in master.ActList:
+        master.send(master.Actuators[act_id].Read(full=True))
+        time.sleep(0.05)
+        master.pass2buffer(master.receive())
+        master.findPackage()
 
-.. autoexception:: lumache.InvalidKindError
+    # Using Autotuner for PID gains tuning
+    for act_id in master.ActList:
+        copyact =  copy.deepcopy(master.Actuators[act_id])
+        copyact.Configuration.data.torqueEnable.data = 1
+        master.send(master.Actuators[act_id].Write(copyact))
 
-For example:
+        copyact =  copy.deepcopy(master.Actuators[act_id])
+        copyact.Configuration.data.autotunerEnable.data = 1
+        master.send(master.Actuators[act_id].Write(copyact))
 
->>> import lumache
->>> lumache.get_random_ingredients()
-['shells', 'gorgonzola', 'parsley']
+        copyact =  copy.deepcopy(master.Actuators[act_id])
+        copyact.Autotuner.data.method.data = 0x02   # Ziegler Nichols method
+        master.send(master.Actuators[act_id].Write(copyact))
+
+    time.sleep(0.3)
+    input("Press any key after tuning process is completed. ")
+
+    # Read tuned PID parameters
+    for act_id in master.ActList:
+        master.send(master.Actuators[act_id].Read(full=True))
+        time.sleep(0.05)
+        master.pass2buffer(master.receive())
+        master.findPackage()
+
+    # Disable Autotuning process
+    for act_id in master.ActList:
+        copyact =  copy.deepcopy(master.Actuators[act_id])
+        copyact.Configuration.data.autotunerEnable.data = 0
+        master.send(master.Actuators[act_id].Write(copyact))
+
+    input("Press any key to save the parameters to ROM  ")
+    for act_id in master.ActList:
+        master.send(master.Actuators[act_id].ROMWrite())
+
+    setpoint = int(input("Enter a setpoint for move Actuators to a position  "))
+    for act_id in master.ActList:
+        copyact =  copy.deepcopy(master.Actuators[act_id])
+        copyact.Configuration.data.operationMode.data = 0   # Position control
+        copyact.PositionControl.data.setpoint.data = setpoint
+        master.send(master.Actuators[act_id].Write(copyact))
