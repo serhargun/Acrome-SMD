@@ -18,8 +18,8 @@ Benefits
 ~~~~~~~~~~~~~~~~~~~~~~
 
 - Versatile and powerful solution for mobile robot development
-- Makes controlling and optimizing DC motors easier
-- Ability to coordinate multiple motors crucial for the development and operation of mobile robots
+- Autotune feature makes controlling and optimizing DC motor's performance easier
+- Daisy chaining allows efficient control of multiple motors, simplifying complex robotics and automation tasks
 
 
 Connections
