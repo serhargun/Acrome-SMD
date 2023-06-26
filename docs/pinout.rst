@@ -11,12 +11,6 @@ GPIO Descriptions
    :alt: GPIO_description
 
    
-Peripheral Ports
----------
-
-.. figure:: figures/peripheralPorts.png
-   :alt: peripheralPorts
-   
 RS485 Ports
 ---------
 
