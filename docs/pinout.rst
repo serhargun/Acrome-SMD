@@ -1,12 +1,6 @@
 Pinout
 =====
  
-GPIO Pins
----------
-
-.. figure:: figures/GPIOPins.png
-   :alt: GPIOPins
-   
 GPIO Descriptions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
