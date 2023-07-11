@@ -16,34 +16,34 @@ Table of Contents
 
 .. toctree::
    :maxdepth: 1
-   :caption: General
+   :caption: 🦾 General
 
    getting-started
 
 .. toctree::
    :maxdepth: 1
-   :caption: Board Specifications
+   :caption: 📚 Board Specifications
 
    Pinout <pinout>
    Sensors <sensors>
 
 .. toctree::
    :maxdepth: 1
-   :caption: Interfaces and Protocols
+   :caption: 💡Interfaces and Protocols
    
    Protocol-RS485 Guide <protocol>
    Auto-Tuner <autotuner>
    
 .. toctree::
    :maxdepth: 1
-   :caption: Brushed DC Motor Board API
+   :caption: 🪄 How to Use ? 
 
    Python API <api>
    Arduino Library <uart>
 
 .. toctree::
    :maxdepth: 1
-   :caption: Example Codes
+   :caption: 🤖 Example Codes
 
    Python Examples <python_examples>
    Arduino Examples <arduino_examples>
@@ -56,7 +56,7 @@ Table of Contents
 ..   Configuring Vscode <configuring-vscode>
   
 .. toctree::
-   :caption: CONTACT
+   :caption: 🔎 CONTACT
 
    Reach Us <contact>
    
