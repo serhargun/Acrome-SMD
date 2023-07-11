@@ -22,31 +22,31 @@ Table of Contents
 
 .. toctree::
    :maxdepth: 1
-   :caption: Board Specifications
+   :caption: Acrome SMD RED Board Specifications
 
    Pinout <pinout>
    Sensors <sensors>
 
-.. toctree::
-   :maxdepth: 1
-   :caption: Interfaces and Protocols
+   .. toctree::
+      :maxdepth: 1
+      :caption: Interfaces and Protocols
+      
+      Protocol-RS-485 Guide <protocol>
+      Auto-Tuner <autotuner>
+      
+   .. toctree::
+      :maxdepth: 1
+      :caption: Brushed DC Motor Board API
    
-   Protocol-RS-485 Guide <protocol>
-   Auto-Tuner <autotuner>
+      Python API <api>
+      Arduino Library <uart>
    
-.. toctree::
-   :maxdepth: 1
-   :caption: Brushed DC Motor Board API
-
-   Python API <api>
-   Arduino Library <uart>
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Example Codes
-
-   Python Examples <python_examples>
-   Arduino Examples <arduino_examples>
+   .. toctree::
+      :maxdepth: 1
+      :caption: Example Codes
+   
+      Python Examples <python_examples>
+      Arduino Examples <arduino_examples>
 ..   
 .. toctree::
 ..   :maxdepth: 1
