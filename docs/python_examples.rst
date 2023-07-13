@@ -8,7 +8,7 @@ In this Python example, the connected motor performs the auto-tune process accor
 
 Required equipment:
  - DC motor
- - ACROME SMD -Red
+ - ACROME SMD
 
 .. code-block:: python
 
