@@ -36,7 +36,7 @@ Table of Contents
    :maxdepth: 1
    :caption: 🪄 How to Use ? 
 
-   Python API <api>
+   Python Library <api>
    Arduino Library <uart>
 
 .. toctree::
