@@ -192,7 +192,7 @@ ID = master.attached()[0] #getting ID of first SMD from scanned ones. You can us
 master.set_shaft_rpm(ID,10000)  #rpm and cpr values are depend on the motor you use.
 master.set_shaft_cpr(ID,64)
 master.pid_tuner(ID)            #starts autotune for setting PID values of control algorithms
-
+```
 
 Setting PID Values
 ^^^^^^^^^^^^^^^^^
