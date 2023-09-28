@@ -1,334 +1,533 @@
-============
 Python Library
-============
+==============
 
-Introduction
-============
+Overview
+--------
 
-Acrome SMD Python SDK allows you to manage multiple Acrome SMD boards with Python3. This SDK handles protocol implementation of the Acrome SMD Boards alongside a Master interface that holds multiple Actuators and controls serial port for best performance. SDK developed to enable async communication with Actuators.
+This library provides easy-to-use Python modules and methods for interfacing with Acrome Smart Motor Driver products.
 
-Classes and Methods
-==================
+Embrace the world of motor control with simplicity using our SMD Python Library. Designed specifically for controlling SMDs, this library provides a seamless experience no matter your skill level in how you control motors.
 
-The SDK contains multiple classes not only for end-user but for internal use too. This type of classes and methods will not be covered in this documentation.
+Whether your project requires basic speed adjustments or precise position control, quickly and easily leverage the flexibility of Python to effortlessly implement a wide variety of motor control strategies.
 
-Actuator Class
+SMD Python Library takes your projects to the next level by offering seamless integration with SMD Sensor modules. With this library, you can increase the functionality and efficiency of your project by effortlessly collecting data from SMD sensor modules via SMD.
+
+Develop your projects with "Acrome Smart Motor Drivers" and a computer that can run your Python code.
+
+You can reach the Acrome Smart Motors Drivers documentation `here <https://acrome-smd.readthedocs.io/en/latest/getting-started.html>`_.
+
+Installation
 ------------
 
-Variables
-**********************
+To use `Acrome Smart Motor Drivers <https://acrome.net/product/smart-motor-drivers>`_ with python library, follow the installation steps below. Library is compatible with Python 3.x and can be installed on both Windows and Linux systems.
 
-Type structure of the Actuator object can be found on the source code. Since all of the variables are self-explanatory, no extra documentation added for now. All the variables of the Actuator objects are instances of the var class. The var class is just a simple wrapper with a single variable named data. The intension of this usage is mimmicking the pointer functionality in C/C++. Since the communication protocol of the Actuator boards have variable sized structure with selective read/write operations, hard coded conditional operations can have a negative impact on the maintainability of the SDK development. This choice comes with a trade-off between the difficulty of using and developing the SDK.
+Prerequisites
+^^^^^^^^^^^^^
 
-User should access all data in the Actuator objects like below:
+Before you begin, make sure you have the following prerequisites:
 
-.. code-block:: python
-   :linenos:
+- Python 3.x: `Python Official Website <https://www.python.org/downloads/>`_
 
-    act = Actuator(0)
-    act.Configuration.data.torqueEnable.data = 1
+Installation
+^^^^^^^^^^^^
 
-__init__(ID):
-**********************
+Windows
+~~~~~~~
 
-**Parameters:**
+1. Open a Command Prompt with administrative privileges.
 
-   *ID:* Device ID of the Actuator Board
+2. Install SMD library using `pip` (Python package manager) by running the following command:
 
-.. code-block:: python
-   :linenos:
+   .. code-block:: shell
 
-   from actuator import *
-   myActuator = Actuator(0)
+      pip install acrome-smd
 
-Ping():
-**********************
+3. Wait for the installation to complete. Pip will automatically download and install the library along with any required dependencies.
 
-**Parameters:** None
+Linux
+~~~~~
 
-**Returns:** list that contains ping package for the Actuator
+1. Open a terminal.
 
-This method is used for generating a ping package for the related Actuator. Ping packages are useful for checking Actuators on the bus.
+2. Install SMD library using pip (Python package manager) by running the following command:
 
-.. code-block:: python
-   :linenos:
+   .. code-block:: shell
 
-   ping_data = myActuator.Ping()
-   user_defined_serial_write_function(ping_data)
+      pip install acrome-smd
 
-Read(params=[], full=False):
-**********************
+3. Wait for the installation to complete. Pip will automatically download and install SMD Library along with any required dependencies.
 
-**Parameters:**
+Verification
+^^^^^^^^^^^^
 
-   *params:* List of parameter indexes to be read.
-   *full:* Request for full read. Default value is false.
-
-**Returns:** list that contains read command package of given variables.
-
-This method is used for generating a package for reading variables from the Actuator board.
-
-When full parameter set to true, params is ignored and full package request is generated. In this configuration, the Actuator replies with a package that contains all variables.
-
-When full parameter is set to false, method generates a package to read given list of parameter indexes. Valid indexes are defined in Parameters class and can be accessed as class members.
+To verify that SMD library has been successfully installed, open a Python interpreter and run the following command:
 
 .. code-block:: python
-   :linenos:
 
-   #Read all variables at once
-   read_pkg = myActuator.Read([],full=True)
-   user_defined_serial_write_function(read_pkg)
+   import smd
+   import smd.red
 
-   #Read present position, current and velocity only.
-   param_list = [Parameters.presentPosition, Parameters.presentVelocity, Parameters.presentCurrent]
-   read_pkg = myActuator.Read(param_list)
+If no errors are raised, the installation was successful.
 
-   user_defined_serial_write_function(read_pkg)
-   
-Write(Act)
-**********************
+Upgrading
+^^^^^^^^^
 
-**Parameters:**
+To upgrade SMD Library to the latest version, you can use the following pip command:
 
-   *Act:* An Actuator object with the desired parameter set.
-   *param_list:* List of parameters to be updated.
+.. code-block:: shell
 
-**Returns:** list that contains write command package of changed variables.
+   pip install acrome-smd
 
-This method takes an object as the new state and compares with the actual Actuator. At the end of the comparison, a package that changes these variables will be generated. User can use the copy module to create a deep copy of the Actuator object, change desired parameters and pass to the module or can create a temporary Actuator object with a parameter list with elements as instances of Parameters class variables in param_list. When user pass a parameter list, only given parameters will be changed regardless of the passed object.
+Usage
+-----
 
-.. code-block:: python
-   :linenos:
+Import the BLABLA Library:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-   import copy
-
-   #Copy actual object
-   Act = copy.deepcopy(myActautor)
-
-   #Set torqueEnable
-   Act.Configuration.data.torqueEnable.data = 1
-
-   #Generate write package
-   write_pkg = myActuator.Write(Act)
-
-   #Send over serial
-   user_defined_serial_write_function(write_pkg)
+First, import the BLABLA library at the beginning of your Python script:
 
 .. code-block:: python
-   :linenos:
 
-   #Create a temporary object
-   Act = Actuator(0)
+   from smd.red import *
 
-   #Set torqueEnable
-   Act.Configuration.data.torqueEnable.data = 1
+Initialize SMD:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-   #Generate write package
-   write_pkg = myActuator.Write(Act, [Parameters.torqueEnable])
-
-   #Send over serial
-   user_defined_serial_write_function(write_pkg)
-   
-Reboot()
-**********************
-
-**Parameters:** None
-
-**Returns:** list that contains reboot command package.
-
-This method generates a reboot command package to reboot the Actuator.
+Create an instance of the BLA class by initializing it with the appropriate settings. This instance represents your BLABLA motor driver and allows you to control it.
 
 .. code-block:: python
-   :linenos:
 
-   reboot_data = myActuator.Reboot()
-   user_defined_serial_write_function(reboot_data)
+   ID = 0  # Set the ID of your SMART MOTOR DRIVER
+   SerialPort = '/dev/ttyUSB0'  # Replace with your specific serial port (for example 'COM3'.)
+   baudrate = 115200  # Set the baud rate for serial communication
 
-FactoryReset()
-**********************
-**Parameters:** None
+   myMaster = Master(SerialPort, baudrate)  # create a master object
+   print(master.scan())  # prints ID list of connected SMDs
 
-**Returns:** list that contains factory reset command package.
+   from smd.red import *
+   import time
 
-This method generates a factory reset command package to take the Actuator back to the factory defaults.
+   MASTER_PORT =  "/dev/ttyUSB0"  # depending on the operating system, port, etc. may vary depending on the
+   master = Master(MASTER_PORT)  # creating master object
 
-.. code-block:: python
-   :linenos:
+   print(master.scan())  # prints ID list of connected SMDs
 
-   fr_data = myActuator.FactoryReset()
+   ID = master.attached()[0]  # getting ID of first SMD from scanned ones.
+   # ID = 0 You can use directly this if it has never been changed before.
 
-   user_defined_serial_write_function(fr_data)
-
-ROMWrite()
-**********************
-
-**Parameters:** None
-
-**Returns:** list that contains ROM write command package.
-
-This method generates a ROM write command package to save parameters to the non-volatile memory.
+Configure SMD:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: python
-   :linenos:
 
-   romwrite_data = myActuator.ROMWrite()
-   user_defined_serial_write_function(romwrite_data)
+   # rpm and cpr values depend on the motor you use.
+   master.set_shaft_rpm(ID, 10000)
+   master.set_shaft_cpr(ID, 64)
 
-parse(package)
-**********************
+   # starts autotune for setting PID values of control algorithms
+   master.pid_tuner(ID)
 
-**Parameters:** package received from serial as a list
+You can configure and use the **SMD** using specific methods belonging to the master class, just like in the code above.
 
-**Returns:** None
+You can access all sample codes from `here <https://sample-codes-url.com>`_.
+Please read full documentation to use all features of a **SMD**.
 
-This method parses the received package and updates values of the Actuator object. This method does not check received package's integrity. For a safer communication, use the Master interface which is provided with this SDK.
+Control
+-------
+
+PID Tune and Control Parameters
+-------------------------------
+
+The control modes on the SMD operate with PID control. Therefore, correctly tuning the P, I, and D constants is crucial for accurate control. The device features an autotune capability to automatically set these values. Alternatively, users can manually input these values if desired.
+
+Autotune
+^^^^^^^^
+
+To utilize the autotune feature on the device, it's essential to ensure that the motor is in a freely rotatable position. This is because the card continuously rotates the motor during the autotuning process.
+
+Following this, the next step is to input the motor's CPR (Counts Per Revolution) and RPM (Revolutions Per Minute) values into the card using the provided methods below. Failing to do this accurately may result in incorrect calculations.
+
+- ``set_shaft_cpr(self, id: int, cpr: float)``
+
+  **Return:** None
+
+  This method sets the count per revolution (CPR) of the motor output shaft.
+
+  - `id` argument is the device ID of the connected driver.
+  - `cpr` argument is the CPR value of the output shaft.
+
+- ``set_shaft_rpm(self, id: int, rpm: float)``
+
+  **Return:** None
+
+  This method sets the revolution per minute (RPM) value of the output shaft at 12V rating.
+
+  - `id` argument is the device ID of the connected driver.
+  - `rpm` argument is the RPM value of the output shaft at 12V.
+
+After completing these steps, you should initiate the tuning process using the ``pid_tuner()`` method. Please note that immediately after calling this method, the motors will start rotating with varying speeds.
+
+- ``pid_tuner(self, id: int)``
+
+  **Return:** None
+
+  This method starts a PID tuning process. Shaft CPR and RPM values **must** be configured beforehand. If CPR and RPM values are not configured, motors will not spin.
+
+  - `id` argument is the device ID of the connected driver.
+
+Once the ``pid_tuner()`` method is initiated, the state of the torque (whether it's enabled or not) does not affect motor operation. There is no need to use the ``enable_torque()`` function.
+
+#### An Example of Autotune 
+```python
+from smd.red import *
+import time
+
+MASTER_PORT =  "/dev/ttyUSB0" #depending on operating system, port, etc. may vary depending on the
+master = Master(MASTER_PORT) #creating master object
+
+print(master.scan()) #prints ID list of connected SMDs
+
+ID = master.attached()[0] #getting ID of first SMD from scanned ones. You can use directly ID = 0 if it has never been changed before.
+
+master.set_shaft_rpm(ID,10000)  #rpm and cpr values are depend on the motor you use.
+master.set_shaft_cpr(ID,64)
+master.pid_tuner(ID)            #starts autotune for setting PID values of control algorithms
+
+
+Setting PID Values
+^^^^^^^^^^^^^^^^^
+
+Manual input of the necessary constants for PID control is also possible. For this, separate P, I, and D constants should be configured for each control mode. Please note that each mode utilizes its own set of constants to control the motor. There are dedicated methods for configuring these constants for each control mode.
+
+- ``set_control_parameters_position(self, id: int, p=None, i=None, d=None, db=None, ff=None, ol=None)``
+
+  **Return:** None
+
+  This method sets the control block parameters for position control mode. Only assigned parameters are written, `None`'s are ignored. The default max output limit is 950.
+
+  - `id` argument is the device ID of the driver.
+  - `p` argument is the proportional gain. Defaults to None.
+  - `i` argument is the integral gain. Defaults to None.
+  - `d` argument is the derivative gain. Defaults to None.
+  - `db` argument is the deadband (of the setpoint type) value. Defaults to None.
+  - `ff` argument is the feedforward value. Defaults to None.
+  - `ol` argument is the maximum output limit. Defaults to None.
+
+- ``set_control_parameters_velocity(self, id: int, p=None, i=None, d=None, db=None, ff=None, ol=None)``
+
+  **Return:** None
+
+  This method sets the control block parameters for velocity control mode. Only assigned parameters are written, `None`'s are ignored. The default max output limit is 950.
+
+  - `id` argument is the device ID of the driver.
+  - `p` argument is the proportional gain. Defaults to None.
+  - `i` argument is the integral gain. Defaults to None.
+  - `d` argument is the derivative gain. Defaults to None.
+  - `db` argument is the deadband (of the setpoint type) value. Defaults to None.
+  - `ff` argument is the feedforward value. Defaults to None.
+  - `ol` argument is the maximum output limit. Defaults to None.
+
+- ``set_control_parameters_torque(self, id: int, p=None, i=None, d=None, db=None, ff=None, ol=None)``
+
+  **Return:** None
+
+  This method sets the control block parameters for torque control mode. Only assigned parameters are written, `None`'s are ignored. The default max output limit is 950.
+
+  - `id` argument is the device ID of the driver.
+  - `p` argument is the proportional gain. Defaults to None.
+  - `i` argument is the integral gain. Defaults to None.
+  - `d` argument is the derivative gain. Defaults to None.
+  - `db` argument is the deadband (of the setpoint type) value. Defaults to None.
+  - `ff` argument is the feedforward value. Defaults to None.
+  - `ol` argument is the maximum output limit. Defaults to None.
+
+Getting PID Values and Control values
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The P, I, and D constants and other values entered for control modes can be obtained. This can be achieved by using the methods provided below.
+
+- ``get_control_parameters_position(self, id: int)``
+
+  **Return:** Returns the list [P, I, D, Feedforward, Deadband, OutputLimit]
+
+  This method gets the position control block parameters.
+
+  - `id` argument is the device ID of the driver.
+
+- ``get_control_parameters_velocity(self, id: int)``
+
+  **Return:** Returns the list [P, I, D, Feedforward, Deadband, OutputLimit]
+
+  This method gets the velocity control block parameters.
+
+  - `id` argument is the device ID of the driver.
+
+- ``get_control_parameters_torque(self, id: int)``
+
+  **Return:** Returns the list [P, I, D, Feedforward, Deadband, OutputLimit]
+
+  This method gets the torque control block parameters.
+
+  - `id` argument is the device ID of the driver.
+
+You can see the PID values after the autotune with the code below.
+
+```python
+from smd.red import *
+import time
+
+MASTER_PORT =  "/dev/ttyUSB0"
+master = Master(MASTER_PORT) #creating master object
+print(master.scan())
+ID = 0 #ID of the SMD connected and autotuned.
+
+print(master.get_control_parameters_position(ID))
+print(master.get_control_parameters_velocity(ID))
+
+
+Brushed DC Motor Controls
+^^^^^^^^^^^^^^^^^^^^^^^
+
+The SMD Red has 4 control modes:
+
+- **PWM Control:** This mode provides power to a brushed DC motor using PWM signals.
+
+- **Position Control:** In this mode, the brushed motor moves to the desired positions using information from the encoder.
+
+- **Velocity Control:** This mode ensures that the motor rotates at the desired speed using data from the encoder.
+
+- **Torque Control:** This mode allows the motor to apply a specific torque by drawing the desired current.
+
+Except for the *PWM Control mode*, all of these control modes operate with PID control. Therefore, it is essential to configure the PID values before starting the motors in these control modes. Without proper PID tuning, the motors may not work at all or may not perform as desired. You can find the necessary information for setting PID values in the `PID Tune` section of the documentation.
+
+Control Methods
+^^^^^^^^^^^^^^^
+
+Regardless of which control mode you choose to use, there are two essential methods that you need to be aware of. One is the `set_operation_mode()` method, which allows you to select the motor control mode you want to use. The other is `enable_torque()`, which enables or disables the motor rotation.
+
+- `set_operation_mode(self, id: int, mode: OperationMode)`
+  - **Return:** *None*
+
+  This method sets the operation mode of the driver. Operation mode may be one of the following:
+  - `OperationMode.PWM`, 
+  - `OperationMode.Position`,
+  - `OperationMode.Velocity`,
+  - `OperationMode.Torque`.
+
+  `id` argument is the device ID of the connected driver.
+
+- `enable_torque(self, id: int, en: bool)`
+  - **Return:** *None*
+
+  This method enables or disables power to the motor which is connected to the driver.
+
+  `id` argument is the device ID of the connected driver.
+
+  `en` argument is a boolean. `True` enables the torque while False `disables`.
+
+PWM Control
+^^^^^^^^^^^
+
+- `set_duty_cycle(self, id: int, pct: float):`
+  - **Return:** *None*
+
+  This method sets the duty cycle to the motor for PWM control mode in terms of percentage. Negative values will change the motor direction.
+
+  `id` argument is the device ID of the driver.
+
+  `id` argument is the duty cycle percentage.
+
+An Example of PWM Control
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+```python
+from smd.red import *
+
+MASTER_PORT =  "COM10"
+master = Master(MASTER_PORT) #creating master object
+print(master.scan())
+ID = 0 
+
+master.set_operation_mode(ID, 0)    #sets the operating mode to 0 represents PWM control mode.
+master.set_duty_cycle(ID, 50)       #sets the duty cycle to 50 percent
+master.enable_torque(ID, True)      #enables the motor torque to start rotating
+
+Position Control
+^^^^^^^^^^^^^^^^
+
+set_position_limits(self, id: int, plmin: int, plmax: int)
+
+Return: None
+This method sets the position limits of the motor in terms of encoder ticks. Default for min is -2,147,483,648 and for max is 2,147,483,647. The torque is disabled if the value is exceeded so a tolerance factor should be taken into consideration when setting these values.
+
+id argument is the device ID of the connected driver.
+
+plmin argument is the minimum position limit.
+
+plmax argument is the maximum position limit.
+
+get_position_limits(self, id: int)
+
+Return: Min and max position limits
+This method gets the position limits of the motor in terms of encoder ticks.
+
+id argument is the device ID of the connected driver.
+
+plmin argument is the minimum position limit.
+
+plmax argument is the maximum position limit.
+
+set_position(self, id: int, sp: int)
+
+Return: None
+This method sets the desired setpoint for the position control in terms of encoder ticks.
+
+id argument is the device ID of the driver.
+
+sp argument is the position control setpoint.
+
+get_position(self, id: int)
+
+Return: Current position of the motor shaft
+This method gets the current position of the motor from the driver in terms of encoder ticks.
+
+id argument is the device ID of the driver.
+
+An Example of Position Control
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: python
-   :linenos:
 
-   #Read all variables at once
-   read_pkg = myActuator.Read([],full=True)
-   user_defined_serial_write_function(read_pkg)
+    from smd.red import *
+    
+    MASTER_PORT = "COM10"
+    master = Master(MASTER_PORT)  # Creating a master object
+    print(master.scan())
+    ID = 0
+    
+    master.set_shaft_rpm(ID, 10000)  # RPM and CPR values depend on the motor you use.
+    master.set_shaft_cpr(ID, 64)
+    master.set_control_parameters_position(ID, 10, 0, 8)  # SMD ID, Kp, Ki, Kd
+    
+    master.set_operation_mode(ID, 1)  # Sets the operating mode to 1, representing Position control mode.
+    master.enable_torque(ID, True)  # Enables the motor torque to start rotating
+    
+    while True:
+        master.set_position(ID, 5000)  # Sets the setpoint to 5000 encoder ticks.
+        time.sleep(1.2)
+        master.set_position(ID, 0)  # Sets the setpoint to 0 encoder ticks. Motor goes to start
+        time.sleep(1.2)
 
-   #Receive reply from the bus
-   received_package = user_defined_serial_read()
 
-   #Parse received package
-   myActuator.parse(received_package)
+You should enter the PID values of Position Control Mode or just tune once the SMD at start. CPR and RPM values should be entered to SMD calculates the necessary variables. If you don't then the motor cannot rotate.
 
-   print(myActuator.Telemetry.data.position.data)
-   
-Master Class
-------------
+Velocity Control
+^^^^^^^^^^^^^^^^
 
-__init__()
-**********************
+set_velocity_limit(self, id: int, vl: int)
 
-**Parameters:**
+Return: None
+This method sets the velocity limit for the motor output shaft in terms of RPM. The velocity limit applies only in velocity mode. Default velocity limit is 65535.
 
-   *size:* Size of buffer to be used for serial
-   *portname:* Name of the serial port
-   *baudrate:* Baudrate of the serial port. Default is 115200.
-   *master_timeout:* Timeout value for Actuator bus in seconds. Default is 10ms.
+id argument is the device ID of the connected driver.
 
-**Returns:** None
+vl argument is the new velocity limit (RPM).
 
-Constructor of this class is responsible for configuring Circular Buffer for serial along with the serial port itself. User should provide a valid serial port name. Buffer size parameter must a power of 2. Recomended minimum value is 256. Recomended value is 4096 for general use.
+get_velocity_limit(self, id: int)
 
-.. code-block:: python
-   :linenos:
+Return: Velocity limit
+This method gets the velocity limit from the driver in terms of RPM.
 
-   m = Master(4096, '/dev/ttyUSB0', 115200, 0.01)
-   
-addActuator()
-**********************
+id argument is the device ID of the connected driver.
 
-**Parameters:**
+set_velocity(self, id: int, sp: int)
 
-   *ID:* Device ID of the Actuator Board which will be added.
+Return: None
+This method sets the desired setpoint for the velocity control in terms of RPM.
 
-**Returns:** None
+id argument is the device ID of the driver.
 
-This method, adds new Actuator to the list of the Master instance for further operations. All Actuator objects of the Master instance can be accessed via Actuators variable of the class. Index of the Actuator object is same as the ID. But user should be careful about accessing Actuator objects since Actuators variable holding empty cells too.
+get_velocity(self, id: int)
 
-.. code-block:: python
-   :linenos:
+Return: Current velocity of the motor shaft
+This method gets the current velocity of the motor output shaft from the driver in terms of RPM.
 
-   m.addActuator(96)
+id argument is the device ID of the driver.
 
-   print(isinstance(m.Actuators[96], Actuator)) # Prints true.
-   print(isinstance(m.Actuators[196], Actuator)) # Prints false.
+An Example of Velocity Control::
 
-removeActuator()
-**********************
+    from smd.red import *
 
-**Parameters:**
+    MASTER_PORT = "COM10"
+    master = Master(MASTER_PORT)  # Creating master object
+    print(master.scan())
+    ID = 0
 
-   *ID:* Device ID of the Actuator Board which will be removed.
+    master.set_shaft_rpm(ID, 10000)  # RPM and CPR values depend on the motor you use.
+    master.set_shaft_cpr(ID, 64)
+    master.set_control_parameters_velocity(ID, 10, 1, 0)  # SMD ID, Kp, Ki, Kd
 
-**Returns:** None
+    master.set_operation_mode(ID, 2)  # Sets the operating mode to 2, representing Velocity control mode.
+    master.set_velocity(ID, 2000)  # Sets the setpoint to 2000 RPM.
 
-This method, removes the Actuator with the given ID from the private list of the Master instance for further operations.
+    master.enable_torque(ID, True)  # Enables the motor torque to start rotating
 
-.. code-block:: python
-   :linenos:
+You should enter the PID values of Position Control Mode or just tune once the SMD at the start. CPR and RPM values should be entered so the SMD calculates the necessary variables. If you don't do this, the motor cannot rotate.
 
-   m.removeActuator(96)
+Torque Control
+~~~~~~~~~~~~~~
 
-send()
-**********************
+- ``set_torque_limit(self, id: int, tl: int)``
 
-**Parameters:**
+    **Return:** None
 
-   *data:* Data that will be sent over serial as bytes.
+    This method sets the torque limit of the driver in terms of milliamps (mA).
 
-**Returns:** None
+    `id` argument is the device ID of the connected driver.
 
-This method is a simple wrapper for serial write operations.
+    `tl` argument is the new torque limit (mA).
 
-.. code-block:: python
-   :linenos:
+- ``get_torque_limit(self, id: int)``
 
-   m.send(m.Actuators[96].Ping())
+    **Return:** Torque limit (mA)
 
-receive()
-**********************
+    This method gets the torque limit from the driver in terms of milliamps (mA).
 
-**Parameters:** None
+    `id` argument is the device ID of the connected driver.
 
-**Returns:** list
+- ``set_torque(self, id: int, sp: int)``
 
-This method is a simple wrapper for serial read operations. Returns all available data on the bus as a list.
+    **Return:** None
 
-.. code-block:: python
-   :linenos:
-   
-   data = m.receive()
+    This method sets the desired setpoint for the torque control in terms of milliamps (mA).
 
-pass2buffer()
-**********************
+    `id` argument is the device ID of the driver.
 
-**Parameters:**
+- ``get_torque(self, id: int)``
 
-   *data:* data came from serial bus.
+    **Return:** Current drawn from the motor (mA)
 
-**Returns:** None
+    This method gets the current drawn from the motor from the driver in terms of milliamps (mA).
 
-This method passes incoming data to the internal Circular Buffer.
+    `id` argument is the device ID of the driver.
 
-.. code-block:: python
-   :linenos:
+An Example of Torque Control::
 
-   data = m.receive()
-   m.pass_to_buffer(data)
+    from smd.red import *
 
-findPackage()
-**********************
-**Parameters:** None
+    MASTER_PORT = "COM10"
+    master = Master(MASTER_PORT)  # Creating master object
+    print(master.scan())
+    ID = 0
 
-**Returns:** None
+    master.set_shaft_rpm(ID, 10000)  # RPM and CPR values depend on the motor you use.
+    master.set_shaft_cpr(ID, 64)
+    master.set_control_parameters_torque(ID, 10, 0.1, 0)  # SMD ID, Kp, Ki, Kd
+    # master.set_torque_limit(220)
 
-This method is used to process the buffer of the Master instance. When a valid package found on the buffer, the Master will update the relevant Actuator object(s).
+    master.set_operation_mode(ID, 3)  # Sets the operating mode to 3, representing Torque control mode.
+    master.set_torque(ID, 80)  # Sets the setpoint to 80 milliamps (mA).
+    master.enable_torque(ID, True)  # Enables the motor torque to start rotating
 
-.. code-block:: python
-   :linenos:
-
-   data = m.receive()
-   m.pass_to_buffer(data)
-
-   m.findPackage()
-
-AutoScan()
-**********************
-**Parameters:** None
-
-**Returns:** None
-
-This method is for scanning the bus and attaching the Actuators on the bus to the Master instance. This automates and simplifies the initialization stage of the class.
-
-.. code-block:: python
-   :linenos:
-
-   m = Master(4096, '/dev/ttyUSB0', 115200, 0.01)
-   m.AutoScan() #This line scans and adds Actuators.
+You must enter the PID values of the Torque Control Mode. Since Auto-tune does not produce these values, you must set them yourself. If you do not do this, the motor cannot rotate properly.
 
