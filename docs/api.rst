@@ -178,21 +178,21 @@ After completing these steps, you should initiate the tuning process using the `
 Once the ``pid_tuner()`` method is initiated, the state of the torque (whether it's enabled or not) does not affect motor operation. There is no need to use the ``enable_torque()`` function.
 
 #### An Example of Autotune 
-```python
-from smd.red import *
-import time
+   .. code-block:: python
+      from smd.red import *
+      import time
+      
+      MASTER_PORT =  "/dev/ttyUSB0" #depending on operating system, port, etc. may vary depending on the
+      master = Master(MASTER_PORT) #creating master object
+      
+      print(master.scan()) #prints ID list of connected SMDs
+      
+      ID = master.attached()[0] #getting ID of first SMD from scanned ones. You can use directly ID = 0 if it has never been changed before.
+      
+      master.set_shaft_rpm(ID,10000)  #rpm and cpr values are depend on the motor you use.
+      master.set_shaft_cpr(ID,64)
+      master.pid_tuner(ID)            #starts autotune for setting PID values of control algorithms
 
-MASTER_PORT =  "/dev/ttyUSB0" #depending on operating system, port, etc. may vary depending on the
-master = Master(MASTER_PORT) #creating master object
-
-print(master.scan()) #prints ID list of connected SMDs
-
-ID = master.attached()[0] #getting ID of first SMD from scanned ones. You can use directly ID = 0 if it has never been changed before.
-
-master.set_shaft_rpm(ID,10000)  #rpm and cpr values are depend on the motor you use.
-master.set_shaft_cpr(ID,64)
-master.pid_tuner(ID)            #starts autotune for setting PID values of control algorithms
-```
 
 Setting PID Values
 ^^^^^^^^^^^^^^^^^
@@ -272,17 +272,17 @@ The P, I, and D constants and other values entered for control modes can be obta
 
 You can see the PID values after the autotune with the code below.
 
-```python
-from smd.red import *
-import time
-
-MASTER_PORT =  "/dev/ttyUSB0"
-master = Master(MASTER_PORT) #creating master object
-print(master.scan())
-ID = 0 #ID of the SMD connected and autotuned.
-
-print(master.get_control_parameters_position(ID))
-print(master.get_control_parameters_velocity(ID))
+   .. code-block:: python
+      from smd.red import *
+      import time
+      
+      MASTER_PORT =  "/dev/ttyUSB0"
+      master = Master(MASTER_PORT) #creating master object
+      print(master.scan())
+      ID = 0 #ID of the SMD connected and autotuned.
+      
+      print(master.get_control_parameters_position(ID))
+      print(master.get_control_parameters_velocity(ID))
 
 
 Brushed DC Motor Controls
@@ -339,18 +339,17 @@ PWM Control
 
 An Example of PWM Control
 ^^^^^^^^^^^^^^^^^^^^^^^^^
-
-```python
-from smd.red import *
-
-MASTER_PORT =  "COM10"
-master = Master(MASTER_PORT) #creating master object
-print(master.scan())
-ID = 0 
-
-master.set_operation_mode(ID, 0)    #sets the operating mode to 0 represents PWM control mode.
-master.set_duty_cycle(ID, 50)       #sets the duty cycle to 50 percent
-master.enable_torque(ID, True)      #enables the motor torque to start rotating
+   .. code-block:: python
+      from smd.red import *
+      
+      MASTER_PORT =  "COM10"
+      master = Master(MASTER_PORT) #creating master object
+      print(master.scan())
+      ID = 0 
+      
+      master.set_operation_mode(ID, 0)    #sets the operating mode to 0 represents PWM control mode.
+      master.set_duty_cycle(ID, 50)       #sets the duty cycle to 50 percent
+      master.enable_torque(ID, True)      #enables the motor torque to start rotating
 
 Position Control
 ^^^^^^^^^^^^^^^^
@@ -424,53 +423,53 @@ You should enter the PID values of Position Control Mode or just tune once the S
 Velocity Control
 ^^^^^^^^^^^^^^^^
 
-set_velocity_limit(self, id: int, vl: int)
-
-Return: None
-This method sets the velocity limit for the motor output shaft in terms of RPM. The velocity limit applies only in velocity mode. Default velocity limit is 65535.
-
-id argument is the device ID of the connected driver.
-
-vl argument is the new velocity limit (RPM).
-
-get_velocity_limit(self, id: int)
-
-Return: Velocity limit
-This method gets the velocity limit from the driver in terms of RPM.
-
-id argument is the device ID of the connected driver.
-
-set_velocity(self, id: int, sp: int)
-
-Return: None
-This method sets the desired setpoint for the velocity control in terms of RPM.
-
-id argument is the device ID of the driver.
-
-get_velocity(self, id: int)
-
-Return: Current velocity of the motor shaft
-This method gets the current velocity of the motor output shaft from the driver in terms of RPM.
-
-id argument is the device ID of the driver.
+   - ``set_velocity_limit(self, id: int, vl: int)``
+   
+      **Return:** None
+      This method sets the velocity limit for the motor output shaft in terms of RPM. The velocity limit applies only in velocity mode. Default velocity limit is 65535.
+      
+      id argument is the device ID of the connected driver.
+      
+      vl argument is the new velocity limit (RPM).
+   
+   - ``get_velocity_limit(self, id: int)``
+   
+      **Return:** Velocity limit
+      This method gets the velocity limit from the driver in terms of RPM.
+   
+   id argument is the device ID of the connected driver.
+   
+   - ``set_velocity(self, id: int, sp: int)``
+   
+      **Return:** None
+      This method sets the desired setpoint for the velocity control in terms of RPM.
+      
+      id argument is the device ID of the driver.
+   
+   - ``get_velocity(self, id: int)``
+   
+      **Return:** Current velocity of the motor shaft
+      This method gets the current velocity of the motor output shaft from the driver in terms of RPM.
+      
+      id argument is the device ID of the driver.
 
 An Example of Velocity Control::
-
-    from smd.red import *
-
-    MASTER_PORT = "COM10"
-    master = Master(MASTER_PORT)  # Creating master object
-    print(master.scan())
-    ID = 0
-
-    master.set_shaft_rpm(ID, 10000)  # RPM and CPR values depend on the motor you use.
-    master.set_shaft_cpr(ID, 64)
-    master.set_control_parameters_velocity(ID, 10, 1, 0)  # SMD ID, Kp, Ki, Kd
-
-    master.set_operation_mode(ID, 2)  # Sets the operating mode to 2, representing Velocity control mode.
-    master.set_velocity(ID, 2000)  # Sets the setpoint to 2000 RPM.
-
-    master.enable_torque(ID, True)  # Enables the motor torque to start rotating
+   .. code-block:: python
+       from smd.red import *
+   
+       MASTER_PORT = "COM10"
+       master = Master(MASTER_PORT)  # Creating master object
+       print(master.scan())
+       ID = 0
+   
+       master.set_shaft_rpm(ID, 10000)  # RPM and CPR values depend on the motor you use.
+       master.set_shaft_cpr(ID, 64)
+       master.set_control_parameters_velocity(ID, 10, 1, 0)  # SMD ID, Kp, Ki, Kd
+   
+       master.set_operation_mode(ID, 2)  # Sets the operating mode to 2, representing Velocity control mode.
+       master.set_velocity(ID, 2000)  # Sets the setpoint to 2000 RPM.
+   
+       master.enable_torque(ID, True)  # Enables the motor torque to start rotating
 
 You should enter the PID values of Position Control Mode or just tune once the SMD at the start. CPR and RPM values should be entered so the SMD calculates the necessary variables. If you don't do this, the motor cannot rotate.
 
@@ -512,22 +511,22 @@ Torque Control
     `id` argument is the device ID of the driver.
 
 An Example of Torque Control::
-
-    from smd.red import *
-
-    MASTER_PORT = "COM10"
-    master = Master(MASTER_PORT)  # Creating master object
-    print(master.scan())
-    ID = 0
-
-    master.set_shaft_rpm(ID, 10000)  # RPM and CPR values depend on the motor you use.
-    master.set_shaft_cpr(ID, 64)
-    master.set_control_parameters_torque(ID, 10, 0.1, 0)  # SMD ID, Kp, Ki, Kd
-    # master.set_torque_limit(220)
-
-    master.set_operation_mode(ID, 3)  # Sets the operating mode to 3, representing Torque control mode.
-    master.set_torque(ID, 80)  # Sets the setpoint to 80 milliamps (mA).
-    master.enable_torque(ID, True)  # Enables the motor torque to start rotating
+   .. code-block:: python
+       from smd.red import *
+   
+       MASTER_PORT = "COM10"
+       master = Master(MASTER_PORT)  # Creating master object
+       print(master.scan())
+       ID = 0
+   
+       master.set_shaft_rpm(ID, 10000)  # RPM and CPR values depend on the motor you use.
+       master.set_shaft_cpr(ID, 64)
+       master.set_control_parameters_torque(ID, 10, 0.1, 0)  # SMD ID, Kp, Ki, Kd
+       # master.set_torque_limit(220)
+   
+       master.set_operation_mode(ID, 3)  # Sets the operating mode to 3, representing Torque control mode.
+       master.set_torque(ID, 80)  # Sets the setpoint to 80 milliamps (mA).
+       master.enable_torque(ID, True)  # Enables the motor torque to start rotating
 
 You must enter the PID values of the Torque Control Mode. Since Auto-tune does not produce these values, you must set them yourself. If you do not do this, the motor cannot rotate properly.
 
